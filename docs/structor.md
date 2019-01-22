@@ -1,0 +1,14 @@
+- docs
+- public
+- src
+    - components
+    - containers
+    - actioncreators
+    - constants
+        - actionTypes
+    - reducers
+    - saga
+    - util
+    - routes
+    - config
+    - models
