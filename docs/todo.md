@@ -3,11 +3,11 @@
     - adding react-router-dom
     - adding redux
     - adding enzyme
-    - localization
-2. layering
+2. base and layering
     - ui component library
     - authentication -> firebase
     - database -> firebase??
+    - localization
 3. Integration
     - source control
     - work flow
