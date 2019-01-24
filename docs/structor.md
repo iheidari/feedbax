@@ -1,14 +1,18 @@
 - docs
 - public
 - src
-    - components
-    - containers
+    - ui
+        - components
+        - containers
+            - resource
+                - resource (get)
+                - behaviours (post, put, delete)
     - actioncreators
     - constants
         - actionTypes
     - reducers
-    - saga
+    - sagaa
     - util
     - routes
-    - config
+    - configuration
     - models
