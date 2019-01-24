@@ -4,11 +4,10 @@ import Router from "./Router";
 
 export class Feedback extends Component {
   render() {
-    const { match, history, isExact } = { ...this.props };
     return (
       <div>
         Feedbacks
-        <Router match={match} history={history} isExact={isExact} />
+        <Router {...this.props} />
       </div>
     );
   }

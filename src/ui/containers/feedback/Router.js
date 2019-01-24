@@ -4,7 +4,8 @@ import List from "./List";
 import Add from "./Add";
 import Edit from "./Edit";
 
-const Router = ({ match }) => {
+const Router = (props) => {
+  const match = props.match;
   return (
     <>
       <Route path={`${match.url}`} exact component={List} />
