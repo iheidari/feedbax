@@ -1,23 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import Router from "./Router";
 
-export class Feedback extends Component {
-  render() {
-    return (
-      <div>
-        Feedbacks
-        <Router {...this.props} />
-      </div>
-    );
-  }
-}
+const Feedback = (props) => {
+  return (
+    <div>
+      Feedbacks
+      <Router {...props} />
+    </div>
+  );
+};
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Feedback);
+export default Feedback;
