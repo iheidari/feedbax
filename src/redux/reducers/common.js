@@ -1,4 +1,5 @@
-import actionTypes from "../constants/actionTypes/common";
+import actionTypes from "../../constants/actionTypes/common";
+
 const common = (state = {}, action) => {
   switch (action.type) {
     case actionTypes.LOOKUPS:

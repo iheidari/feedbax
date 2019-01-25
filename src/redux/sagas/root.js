@@ -1,5 +1,5 @@
 import { takeEvery } from "redux-saga/effects";
-import commonActionTypes from "../constants/actionTypes/common";
+import commonActionTypes from "../../constants/actionTypes/common";
 import * as commonSagas from "./common";
 
 function* watchAll() {

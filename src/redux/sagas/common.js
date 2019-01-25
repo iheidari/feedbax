@@ -1,6 +1,6 @@
 import {put} from 'redux-saga/effects';
 
-import commonActionTypes from '../constants/actionTypes/common';
+import commonActionTypes from '../../constants/actionTypes/common';
 
 export function* lookupAsync() {
   const result = yield {
