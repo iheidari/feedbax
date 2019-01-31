@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ThemeProvider } from "styled-components";
+import { BrowserRouter } from "react-router-dom";
 import theme from "../../../theme";
 import Router from "./Router";
 import commonActionTypes from "../../../constants/actionTypes/common";
@@ -16,13 +17,15 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Body>
-          <Content>
-            <Header />
-            <Router />
-            <Footer />
-          </Content>
-        </Body>
+        <BrowserRouter>
+          <Body>
+            <Content>
+              <Header />
+              <Router />
+              <Footer />
+            </Content>
+          </Body>
+        </BrowserRouter>
       </ThemeProvider>
     );
   }

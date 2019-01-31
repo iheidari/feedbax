@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 export class List extends Component {
   render() {
@@ -7,16 +7,15 @@ export class List extends Component {
       <div>
         List
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => ({
-  
-})
+const mapStateToProps = state => ({});
 
-const mapDispatchToProps = {
-  
-}
+const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(List)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(List);

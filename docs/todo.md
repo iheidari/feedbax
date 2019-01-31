@@ -4,6 +4,9 @@
     - adding redux
     - adding enzyme
 2. base and layering
+    - styled-components
+    - theme
+        - default theme combined by new theme
     - ui component library
     - authentication -> firebase
     - database -> firebase??
