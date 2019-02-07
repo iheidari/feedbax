@@ -10,6 +10,10 @@ function* watchAll() {
   yield takeEvery(commonActionTypes.LOOKUPS_ASYNC, commonSagas.lookupAsync);
 
   yield takeEvery(
+    feedbackActionTypes.LOAD_FEEDBACK_ASYNC,
+    feedbackSagas.loadFeedback
+  );
+  yield takeEvery(
     feedbackActionTypes.SAVE_FEEDBACK_ASYNC,
     feedbackSagas.saveFeedback
   );

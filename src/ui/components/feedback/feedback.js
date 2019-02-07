@@ -31,7 +31,7 @@ const Feedback = props => {
 };
 
 Feedback.propTypes = {
-  title: PropTypes.string,
+  model: PropTypes.object,
   fieledChanged: PropTypes.func.isRequired
 };
 
