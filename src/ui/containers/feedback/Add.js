@@ -11,28 +11,14 @@ import {
 export class Add extends Component {
   constructor(props) {
     super(props);
-
     this.modelChanged = this.modelChanged.bind(this);
     this.saveFeedback = this.saveFeedback.bind(this);
-
-    this.state = {
-      model: {
-        title: '',
-        description: ''
-      }
-    };
   }
 
   modelChanged(key) {
     return event => {
       const newValue = { [key]: event.target.value };
       this.props.modelChanged(newValue);
-
-      // const newValue = { [key]: event.target.value };
-      // this.setState(state => ({
-      //   ...state,
-      //   model: { ...state.model, ...newValue }
-      // }));
     };
   }
 
@@ -41,16 +27,13 @@ export class Add extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.props.feedback);
-    // if (this.props.feedback === {}) {
-    //   console.log('run');
-    //   this.props.loadFeedbackAsync(this.props.id, this.props.feedbacks);
-    // }
     if (this.props.id)
       this.props.loadFeedbackAsync(this.props.id, this.props.feedbacks);
   }
 
   render() {
+    console.log(this.props.feedback);
+    if (this.props.id && !this.props.feedback.id) return null;
     return (
       <div>
         <Feedback
