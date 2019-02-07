@@ -9,35 +9,19 @@ const feedback = (
       return { ...state, list: action.feedbacks };
     }
     case actionTypes.DELETE_FEEDBACK: {
-      const feedbacks = state.list.filter(
-        feedback => feedback.id !== action.feedback.id
-      );
-      return { ...state, list: feedbacks };
+      return { ...state, list: action.feedbacks };
     }
     case actionTypes.MODEL_CHANGED: {
-      return {
-        ...state,
-        current: { ...state.current, ...action.value }
-      };
+      return { ...state, current: action.feedback };
     }
     case actionTypes.LOAD_FEEDBACK: {
       return { ...state, current: action.feedback };
     }
     case actionTypes.ADD_FEEDBACK: {
-      const savedFeedback = action.savedFeedback;
-      const feedbacks = [...state.list, savedFeedback];
-      return { ...state, list: feedbacks };
+      return { ...state, list: action.feedbacks };
     }
     case actionTypes.UPDATE_FEEDBACK: {
-      const savedFeedback = action.savedFeedback;
-      const feedbacks = state.list.map(feedback => {
-        if (feedback.id === savedFeedback.id) {
-          return savedFeedback;
-        } else {
-          return feedback;
-        }
-      });
-      return { ...state, list: feedbacks };
+      return { ...state, list: action.feedbacks };
     }
     default:
       return state;

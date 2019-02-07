@@ -13,7 +13,8 @@ export class List extends Component {
   }
 
   onDelete(feedbackId) {
-    return () => this.props.deleteFeedbackAsync(feedbackId);
+    return () =>
+      this.props.deleteFeedbackAsync(feedbackId, this.props.feedbacks);
   }
 
   componentDidMount() {

@@ -18,12 +18,12 @@ export class Add extends Component {
   modelChanged(key) {
     return event => {
       const newValue = { [key]: event.target.value };
-      this.props.modelChanged(newValue);
+      this.props.modelChanged(this.props.feedback, newValue);
     };
   }
 
   saveFeedback() {
-    this.props.saveFeedbackAsync(this.props.feedback);
+    this.props.saveFeedbackAsync(this.props.feedback, this.props.feedbacks);
   }
 
   componentDidMount() {

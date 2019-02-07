@@ -1,35 +1,26 @@
 import { put } from 'redux-saga/effects';
 import httpClient from '../../api/httpClient';
+import * as feedbackActionCreators from '../actionCreators/feedback';
 
-import feedbackActionTypes from '../../constants/actionTypes/feedback';
-
-export function* loadFeedbacks({ page, take }) {
+export function* loadFeedbacksAsync({ page, take }) {
   const feedbacks = yield httpClient.get('/feedback');
-  yield put({ type: feedbackActionTypes.LOAD_FEEDBACKS, feedbacks });
+  yield put(feedbackActionCreators.loadFeedbacks(feedbacks));
 }
 
-export function* deleteFeedback({ feedbackId }) {
+export function* deleteFeedbackAsync({ feedbackId, feedbacks }) {
   const feedback = yield httpClient.delete(`/feedback/${feedbackId}`);
-  yield put({ type: feedbackActionTypes.DELETE_FEEDBACK, feedback });
+  yield put(feedbackActionCreators.deleteFeedback(feedback, feedbacks));
 }
 
-export function* loadFeedback({ feedbackId, feedbacks }) {
+export function* loadFeedbackAsync({ feedbackId, feedbacks }) {
   let feedback = feedbacks.find(feedback => feedback.id === feedbackId);
-  if (feedback)
-    yield put({ type: feedbackActionTypes.LOAD_FEEDBACK, feedback });
-  else {
-    feedback = yield httpClient.get(`/feedback/${feedbackId}`);
-    yield put({ type: feedbackActionTypes.LOAD_FEEDBACK, feedback });
-  }
+  if (!feedback) feedback = yield httpClient.get(`/feedback/${feedbackId}`);
+  yield put(feedbackActionCreators.loadFeedback(feedback));
 }
 
-export function* saveFeedback({ feedbackModel }) {
-  let actionType = feedbackModel.id
-    ? feedbackActionTypes.UPDATE_FEEDBACK
-    : feedbackActionTypes.ADD_FEEDBACK;
-  const savedFeedback = yield httpClient.post('/feedback', feedbackModel);
-  yield put({
-    type: actionType,
-    savedFeedback
-  });
+export function* saveFeedbackAsync({ feedback, feedbacks }) {
+  const savedFeedback = yield httpClient.post('/feedback', feedback);
+  yield feedback.id
+    ? put(feedbackActionCreators.updateFeedback(savedFeedback, feedbacks))
+    : put(feedbackActionCreators.addFeedback(savedFeedback, feedbacks));
 }

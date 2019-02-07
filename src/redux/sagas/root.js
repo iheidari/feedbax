@@ -11,19 +11,19 @@ function* watchAll() {
 
   yield takeEvery(
     feedbackActionTypes.LOAD_FEEDBACKS_ASYNC,
-    feedbackSagas.loadFeedbacks
+    feedbackSagas.loadFeedbacksAsync
   );
   yield takeEvery(
     feedbackActionTypes.DELETE_FEEDBACK_ASYNC,
-    feedbackSagas.deleteFeedback
+    feedbackSagas.deleteFeedbackAsync
   );
   yield takeEvery(
     feedbackActionTypes.LOAD_FEEDBACK_ASYNC,
-    feedbackSagas.loadFeedback
+    feedbackSagas.loadFeedbackAsync
   );
   yield takeEvery(
     feedbackActionTypes.SAVE_FEEDBACK_ASYNC,
-    feedbackSagas.saveFeedback
+    feedbackSagas.saveFeedbackAsync
   );
 }
 
