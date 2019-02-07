@@ -5,6 +5,15 @@ const feedback = (
   action
 ) => {
   switch (action.type) {
+    case actionTypes.LOAD_FEEDBACKS: {
+      return { ...state, list: action.feedbacks };
+    }
+    case actionTypes.DELETE_FEEDBACK: {
+      const feedbacks = state.list.filter(
+        feedback => feedback.id !== action.feedback.id
+      );
+      return { ...state, list: feedbacks };
+    }
     case actionTypes.MODEL_CHANGED: {
       return {
         ...state,

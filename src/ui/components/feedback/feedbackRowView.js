@@ -1,25 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
+import styled from 'styled-components';
+import FeedbackLink from './FeedbackLink';
+
+const Row = styled(Grid)`
+  border: 1px solid black;
+  padding: 10px;
+`;
+
+const Column = styled(Grid)`
+  border: 1px solid black;
+  padding: 5px;
+`;
 
 const FeedbackRowView = props => {
   return (
-    <Grid container onClick={props.onSelect}>
-      <Grid item lg='3'>
-        {props.title}
-      </Grid>
-      <Grid item lg='7'>
+    <Row container>
+      <Column item lg={3}>
+        <FeedbackLink {...props} />
+      </Column>
+      <Column item lg={7}>
         {props.description}
-      </Grid>
-      <Grid item lg='2' onClick={props.onDelete}>
+      </Column>
+      <Column item lg={2} onClick={props.onDelete}>
         Delete
-      </Grid>
-    </Grid>
+      </Column>
+    </Row>
   );
 };
 
 FeedbackRowView.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  description: PropTypes.string
 };
 
 export default FeedbackRowView;

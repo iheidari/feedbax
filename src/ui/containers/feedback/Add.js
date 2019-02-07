@@ -32,7 +32,6 @@ export class Add extends Component {
   }
 
   render() {
-    console.log(this.props.feedback);
     if (this.props.id && !this.props.feedback.id) return null;
     return (
       <div>
