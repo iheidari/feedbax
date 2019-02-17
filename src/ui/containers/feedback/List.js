@@ -52,7 +52,11 @@ export class List extends Component {
     ));
     return (
       <div>
-        <FeedbackRowHeader onOrder={this.onOrder} />
+        <FeedbackRowHeader
+          onOrder={this.onOrder}
+          sort={this.props.sort}
+          order={this.props.order}
+        />
         {feedbackRows}
       </div>
     );
