@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import OrderSign from './OrderSign';
+import HeaderText from './HeaderText';
 
 const Row = styled(Grid)`
   border: 1px solid black;
@@ -17,7 +17,7 @@ const FeedbackRowHeader = props => {
   return (
     <Row container>
       <Column item lg={3} onClick={props.onOrder('title')}>
-        <OrderSign
+        <HeaderText
           sort={props.sort}
           order={props.order}
           columnName='title'
@@ -25,7 +25,7 @@ const FeedbackRowHeader = props => {
         />
       </Column>
       <Column item lg={7} onClick={props.onOrder('description')}>
-        <OrderSign
+        <HeaderText
           sort={props.sort}
           order={props.order}
           columnName='description'
