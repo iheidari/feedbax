@@ -31,6 +31,7 @@ export class List extends Component {
         onDelete={this.onDelete(feedback.id)}
       />
     ));
+    console.log(feedbackRows);
     return <div>{feedbackRows}</div>;
   }
 }

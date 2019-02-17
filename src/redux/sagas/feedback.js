@@ -1,9 +1,12 @@
 import { put } from 'redux-saga/effects';
 import httpClient from '../../api/httpClient';
 import * as feedbackActionCreators from '../actionCreators/feedback';
+import { generateQueryString } from '../../util/http';
 
-export function* loadFeedbacksAsync({ page, take, sort, order }) {
-  const queryString = `page=${page}&take=${take}&sort=${sort}&order=${order}`;
+export function* loadFeedbacksAsync(props) {
+  const { type, ...queryStringObjects } = props;
+  const queryString = generateQueryString(queryStringObjects);
+
   const feedbacks = yield httpClient.get(`/feedback?${queryString}`);
   yield put(feedbackActionCreators.loadFeedbacks(feedbacks));
 }
