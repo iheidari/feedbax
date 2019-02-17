@@ -8,7 +8,9 @@ export function* loadFeedbacksAsync(props) {
   const queryString = generateQueryString(queryStringObjects);
 
   const feedbacks = yield httpClient.get(`/feedback?${queryString}`);
-  yield put(feedbackActionCreators.loadFeedbacks(feedbacks));
+  yield put(
+    feedbackActionCreators.loadFeedbacks(feedbacks, queryStringObjects)
+  );
 }
 
 export function* deleteFeedbackAsync({ feedbackId, feedbacks }) {

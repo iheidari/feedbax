@@ -1,20 +1,16 @@
 import feedbackActionTypes from '../../constants/actionTypes/feedback';
 
-export const loadFeedbacksAsync = (
-  page = 0,
-  take = 5,
-  sort,
-  order = 'asc'
-) => ({
+export const loadFeedbacksAsync = (page = 1, take = 5, sort, order) => ({
   type: feedbackActionTypes.LOAD_FEEDBACKS_ASYNC,
   page,
   take,
   sort,
   order
 });
-export const loadFeedbacks = feedbacks => ({
+export const loadFeedbacks = (feedbacks, queryStringObjects) => ({
   type: feedbackActionTypes.LOAD_FEEDBACKS,
-  feedbacks
+  feedbacks,
+  queryStringObjects
 });
 
 export const deleteFeedbackAsync = (feedbackId, feedbacks) => ({

@@ -8,3 +8,14 @@ export const generateQueryString = queryStringObject => {
     queryString = queryString.substring(0, queryString.length - 1);
   return queryString;
 };
+
+export const reverseOrder = (order, newSort, oldSort) => {
+  if (newSort !== oldSort) return 'asc';
+  if (order) {
+    if (order === 'asc') return 'desc';
+    else if (order === 'desc') return 'asc';
+    //TODO: throw an exception in case of invalid value
+    //else throw('order value is not valied')
+  }
+  return 'asc';
+};

@@ -1,12 +1,17 @@
 import actionTypes from '../../constants/actionTypes/feedback';
 
 const feedback = (
-  state = { list: [], current: { title: '', description: '' } },
+  state = {
+    list: [],
+    current: { title: '', description: '' },
+    page: 1,
+    take: 5
+  },
   action
 ) => {
   switch (action.type) {
     case actionTypes.LOAD_FEEDBACKS: {
-      return { ...state, list: action.feedbacks };
+      return { ...state, list: action.feedbacks, ...action.queryStringObjects };
     }
     case actionTypes.DELETE_FEEDBACK: {
       return { ...state, list: action.feedbacks };
