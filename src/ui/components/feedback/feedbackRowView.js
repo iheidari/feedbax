@@ -4,29 +4,25 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import FeedbackLink from './FeedbackLink';
 
-const Row = styled(Grid)`
-  border: 1px solid black;
-  padding: 10px;
-`;
-
 const Column = styled(Grid)`
   border: 1px solid black;
   padding: 5px;
 `;
 
 const FeedbackRowView = props => {
+  const columns = props.model.list.columns;
   return (
-    <Row container>
-      <Column item lg={3}>
+    <>
+      <Column item {...columns.title.size}>
         <FeedbackLink {...props} />
       </Column>
-      <Column item lg={7}>
+      <Column item {...columns.description.size}>
         {props.description}
       </Column>
-      <Column item lg={2} onClick={props.onDelete}>
+      <Column item {...columns.deleteAction.size} onClick={props.onDelete}>
         Delete
       </Column>
-    </Row>
+    </>
   );
 };
 

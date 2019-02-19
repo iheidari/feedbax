@@ -2,7 +2,6 @@ import actionTypes from '../../constants/actionTypes/feedback';
 
 const feedback = (
   state = {
-    list: [],
     current: { title: '', description: '' },
     page: 1,
     take: 5
