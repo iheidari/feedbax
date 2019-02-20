@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Feedback from '../../components/feedback/Feedback';
 import Button from '@material-ui/core/Button';
 import {
@@ -42,7 +43,7 @@ export class Add extends Component {
         <Button variant='contained' onClick={this.saveFeedback}>
           Save
         </Button>
-        <Button>Back</Button>
+        <Link to='/feedback'>Back</Link>
       </div>
     );
   }

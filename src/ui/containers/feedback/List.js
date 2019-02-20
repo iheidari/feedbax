@@ -52,11 +52,9 @@ export class List extends Component {
 
   render() {
     if (!this.props.feedbacks) {
-      console.log('fetching feedbacks');
       return 'fetching feedbacks';
     }
     if (this.props.feedbacks.length === 0) {
-      console.log('no feedback founds');
       return 'no feedback founds';
     }
     const feedbackRows = this.props.feedbacks.map(feedback => (

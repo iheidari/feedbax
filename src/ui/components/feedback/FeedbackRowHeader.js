@@ -2,7 +2,6 @@ import React from 'react';
 import ListHeader from '../layout/ListHeader';
 
 const FeedbackRowHeader = props => {
-  console.log('feedbackHeader');
   const columns = props.model.list.columns;
   let columnsComponents = [];
   for (let column in columns) {
