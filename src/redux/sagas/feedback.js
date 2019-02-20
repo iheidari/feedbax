@@ -19,8 +19,11 @@ export function* deleteFeedbackAsync({ feedbackId, feedbacks }) {
 }
 
 export function* loadFeedbackAsync({ feedbackId, feedbacks }) {
-  let feedback = feedbacks.find(feedback => feedback.id === feedbackId);
-  if (!feedback) feedback = yield httpClient.get(`/feedback/${feedbackId}`);
+  let feedback;
+  if (feedbacks)
+    feedback = feedbacks.find(feedback => feedback.id === feedbackId);
+  if (!feedback || !feedbacks)
+    feedback = yield httpClient.get(`/feedback/${feedbackId}`);
   yield put(feedbackActionCreators.loadFeedback(feedback));
 }
 
