@@ -4,7 +4,9 @@ const feedback = (
   state = {
     current: { title: '', description: '' },
     page: 1,
-    take: 5
+    take: 5,
+    saved: false,
+    saveMessage: ''
   },
   action
 ) => {
@@ -22,11 +24,23 @@ const feedback = (
       return { ...state, current: action.feedback };
     }
     case actionTypes.ADD_FEEDBACK: {
-      return { ...state, list: action.feedbacks };
+      return {
+        ...state,
+        list: action.feedbacks,
+        saved: true,
+        saveMessage: 'Feedback added successfully'
+      };
     }
     case actionTypes.UPDATE_FEEDBACK: {
-      return { ...state, list: action.feedbacks };
+      return {
+        ...state,
+        list: action.feedbacks,
+        saved: true,
+        saveMessage: 'Feedback updated successfully'
+      };
     }
+    case actionTypes.CLOSE_SNACKBAR:
+      return { ...state, saved: false, saveMessage: '' };
     default:
       return state;
   }

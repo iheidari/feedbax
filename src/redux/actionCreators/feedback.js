@@ -7,6 +7,7 @@ export const loadFeedbacksAsync = (page = 1, take = 5, sort, order) => ({
   sort,
   order
 });
+
 export const loadFeedbacks = (feedbacks, queryStringObjects) => ({
   type: feedbackActionTypes.LOAD_FEEDBACKS,
   feedbacks,
@@ -18,6 +19,7 @@ export const deleteFeedbackAsync = (feedbackId, feedbacks) => ({
   feedbackId,
   feedbacks
 });
+
 export const deleteFeedback = (deletedFeedback, feedbacks) => {
   const newFeedbacks = feedbacks.filter(
     feedback => feedback.id !== deletedFeedback.id
@@ -38,6 +40,7 @@ export const loadFeedbackAsync = (feedbackId, feedbacks) => ({
   feedbackId,
   feedbacks
 });
+
 export const loadFeedback = feedback => ({
   type: feedbackActionTypes.LOAD_FEEDBACK,
   feedback
@@ -48,10 +51,12 @@ export const saveFeedbackAsync = (feedback, feedbacks) => ({
   feedback,
   feedbacks
 });
+
 export const addFeedback = (savedFeedback, feedbacks) => ({
   type: feedbackActionTypes.ADD_FEEDBACK,
   feedbacks: [...feedbacks, savedFeedback]
 });
+
 export const updateFeedback = (savedFeedback, feedbacks) => {
   const newFeedbacks = feedbacks.map(feedback => {
     if (feedback.id === savedFeedback.id) {
@@ -62,3 +67,7 @@ export const updateFeedback = (savedFeedback, feedbacks) => {
   });
   return { type: feedbackActionTypes.UPDATE_FEEDBACK, feedbacks: newFeedbacks };
 };
+
+export const closeSnackbar = () => ({
+  type: feedbackActionTypes.CLOSE_SNACKBAR
+});

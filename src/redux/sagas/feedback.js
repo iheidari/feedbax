@@ -30,6 +30,6 @@ export function* loadFeedbackAsync({ feedbackId, feedbacks }) {
 export function* saveFeedbackAsync({ feedback, feedbacks }) {
   const savedFeedback = yield httpClient.post('/feedback', feedback);
   yield feedback.id
-    ? put(feedbackActionCreators.updateFeedback(savedFeedback, feedbacks))
-    : put(feedbackActionCreators.addFeedback(savedFeedback, feedbacks));
+    ? put(feedbackActionCreators.updateFeedback(savedFeedback, feedbacks || []))
+    : put(feedbackActionCreators.addFeedback(savedFeedback, feedbacks || []));
 }
