@@ -30,12 +30,11 @@ export class Add extends Component {
   }
 
   saveFeedback() {
-    this.props.saveFeedbackAsync(this.props.feedback, this.props.feedbacks);
+    this.props.saveFeedbackAsync(this.props.feedback);
   }
 
   componentDidMount() {
-    if (this.props.id)
-      this.props.loadFeedbackAsync(this.props.id, this.props.feedbacks);
+    if (this.props.id) this.props.loadFeedbackAsync(this.props.id);
   }
 
   onSnackbarClose = (event, reason) => {
@@ -68,7 +67,6 @@ export class Add extends Component {
 const mapStateToProps = (state, props) => ({
   id: props.match.params.id,
   feedback: state.feedback.current,
-  feedbacks: state.feedback.list,
   saved: state.feedback.saved,
   saveMessage: state.feedback.saveMessage
 });

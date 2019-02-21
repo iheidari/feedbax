@@ -19,22 +19,34 @@ const Row = styled(Grid)`
 export class List extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
     this.onDelete = this.onDelete.bind(this);
     this.onOrder = this.onOrder.bind(this);
   }
 
   onDelete(feedbackId) {
-    return () =>
-      this.props.deleteFeedbackAsync(feedbackId, this.props.feedbacks);
+    return () => {
+      const loadingProps = {
+        page: this.props.page,
+        take: this.props.take,
+        orderColumn: this.state.orderColumn,
+        order: this.props.order
+      };
+      return this.props.deleteFeedbackAsync(feedbackId, loadingProps);
+    };
   }
 
   onOrder(orderColumn) {
     return () => {
+      this.setState({ orderColumn });
+
+      //change sort direction after each click on column
       const order = reverseOrder(
         this.props.order,
         this.props.sort,
         orderColumn
       );
+
       this.props.loadFeedbacksAsync(
         this.props.page,
         this.props.take,
@@ -45,9 +57,7 @@ export class List extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.feedbacks) {
-      this.props.loadFeedbacksAsync();
-    }
+    this.props.loadFeedbacksAsync();
   }
 
   render() {

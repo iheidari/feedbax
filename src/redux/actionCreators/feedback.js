@@ -14,19 +14,16 @@ export const loadFeedbacks = (feedbacks, queryStringObjects) => ({
   queryStringObjects
 });
 
-export const deleteFeedbackAsync = (feedbackId, feedbacks) => ({
+export const deleteFeedbackAsync = (feedbackId, loadingProps) => ({
   type: feedbackActionTypes.DELETE_FEEDBACK_ASYNC,
   feedbackId,
-  feedbacks
+  loadingProps
 });
 
-export const deleteFeedback = (deletedFeedback, feedbacks) => {
-  const newFeedbacks = feedbacks.filter(
-    feedback => feedback.id !== deletedFeedback.id
-  );
+export const deleteFeedback = deletedFeedback => {
   return {
     type: feedbackActionTypes.DELETE_FEEDBACK,
-    feedbacks: newFeedbacks
+    deletedFeedback
   };
 };
 
@@ -35,10 +32,9 @@ export const modelChanged = (feedback, value) => ({
   feedback: { ...feedback, ...value }
 });
 
-export const loadFeedbackAsync = (feedbackId, feedbacks) => ({
+export const loadFeedbackAsync = feedbackId => ({
   type: feedbackActionTypes.LOAD_FEEDBACK_ASYNC,
-  feedbackId,
-  feedbacks
+  feedbackId
 });
 
 export const loadFeedback = feedback => ({
@@ -46,27 +42,20 @@ export const loadFeedback = feedback => ({
   feedback
 });
 
-export const saveFeedbackAsync = (feedback, feedbacks) => ({
+export const saveFeedbackAsync = feedback => ({
   type: feedbackActionTypes.SAVE_FEEDBACK_ASYNC,
-  feedback,
-  feedbacks
+  feedback
 });
 
-export const addFeedback = (savedFeedback, feedbacks) => ({
+export const addFeedback = savedFeedback => ({
   type: feedbackActionTypes.ADD_FEEDBACK,
-  feedbacks: [...feedbacks, savedFeedback]
+  savedFeedback
 });
 
-export const updateFeedback = (savedFeedback, feedbacks) => {
-  const newFeedbacks = feedbacks.map(feedback => {
-    if (feedback.id === savedFeedback.id) {
-      return savedFeedback;
-    } else {
-      return feedback;
-    }
-  });
-  return { type: feedbackActionTypes.UPDATE_FEEDBACK, feedbacks: newFeedbacks };
-};
+export const updateFeedback = savedFeedback => ({
+  type: feedbackActionTypes.UPDATE_FEEDBACK,
+  savedFeedback
+});
 
 export const closeSnackbar = () => ({
   type: feedbackActionTypes.CLOSE_SNACKBAR

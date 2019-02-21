@@ -15,7 +15,7 @@ const feedback = (
       return { ...state, list: action.feedbacks, ...action.queryStringObjects };
     }
     case actionTypes.DELETE_FEEDBACK: {
-      return { ...state, list: action.feedbacks };
+      return state;
     }
     case actionTypes.MODEL_CHANGED: {
       return { ...state, current: action.feedback };
@@ -26,7 +26,7 @@ const feedback = (
     case actionTypes.ADD_FEEDBACK: {
       return {
         ...state,
-        list: action.feedbacks,
+        current: { title: '', description: '' },
         saved: true,
         saveMessage: 'Feedback added successfully'
       };
@@ -34,7 +34,7 @@ const feedback = (
     case actionTypes.UPDATE_FEEDBACK: {
       return {
         ...state,
-        list: action.feedbacks,
+        current: action.savedFeedback,
         saved: true,
         saveMessage: 'Feedback updated successfully'
       };

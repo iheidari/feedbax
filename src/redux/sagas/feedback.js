@@ -13,23 +13,20 @@ export function* loadFeedbacksAsync(props) {
   );
 }
 
-export function* deleteFeedbackAsync({ feedbackId, feedbacks }) {
+export function* deleteFeedbackAsync({ feedbackId, loadingProps }) {
   const feedback = yield httpClient.delete(`/feedback/${feedbackId}`);
-  yield put(feedbackActionCreators.deleteFeedback(feedback, feedbacks));
+  yield put(feedbackActionCreators.deleteFeedback(feedback));
+  yield loadFeedbacksAsync(loadingProps);
 }
 
-export function* loadFeedbackAsync({ feedbackId, feedbacks }) {
-  let feedback;
-  if (feedbacks)
-    feedback = feedbacks.find(feedback => feedback.id === feedbackId);
-  if (!feedback || !feedbacks)
-    feedback = yield httpClient.get(`/feedback/${feedbackId}`);
+export function* loadFeedbackAsync({ feedbackId }) {
+  const feedback = yield httpClient.get(`/feedback/${feedbackId}`);
   yield put(feedbackActionCreators.loadFeedback(feedback));
 }
 
-export function* saveFeedbackAsync({ feedback, feedbacks }) {
+export function* saveFeedbackAsync({ feedback }) {
   const savedFeedback = yield httpClient.post('/feedback', feedback);
   yield feedback.id
-    ? put(feedbackActionCreators.updateFeedback(savedFeedback, feedbacks || []))
-    : put(feedbackActionCreators.addFeedback(savedFeedback, feedbacks || []));
+    ? put(feedbackActionCreators.updateFeedback(savedFeedback))
+    : put(feedbackActionCreators.addFeedback(savedFeedback));
 }
