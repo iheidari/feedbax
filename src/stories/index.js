@@ -5,12 +5,15 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
-import Modal from '../ui/components/layout/Modal';
+import Paging from '../ui/components/Paging';
 
-storiesOf('Dialog', module).add('simple Dialog', () => (
-  <Modal text='Title' onClose={action('closed')} open={true}>
-    Inside text
-  </Modal>
+storiesOf('Paging', module).add('simple one', () => (
+  <Paging
+    current={3}
+    count={19}
+    take={3}
+    onPagerChange={page => action(`page: ${page}`)}
+  />
 ));
 
 // ---demo--- need to be removed
