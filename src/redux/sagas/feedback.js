@@ -7,9 +7,12 @@ export function* loadFeedbacksAsync(props) {
   const { type, ...queryStringObjects } = props;
   const queryString = generateQueryString(queryStringObjects);
 
-  const feedbacks = yield httpClient.get(`/feedback?${queryString}`);
+  const { count, result: feedbacks } = yield httpClient.get(
+    `/feedback?${queryString}`
+  );
+
   yield put(
-    feedbackActionCreators.loadFeedbacks(feedbacks, queryStringObjects)
+    feedbackActionCreators.loadFeedbacks(feedbacks, count, queryStringObjects)
   );
 }
 

@@ -12,7 +12,12 @@ const feedback = (
 ) => {
   switch (action.type) {
     case actionTypes.LOAD_FEEDBACKS: {
-      return { ...state, list: action.feedbacks, ...action.queryStringObjects };
+      return {
+        ...state,
+        list: action.feedbacks,
+        count: action.count,
+        ...action.queryStringObjects
+      };
     }
     case actionTypes.DELETE_FEEDBACK: {
       return state;

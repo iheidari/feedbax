@@ -10,6 +10,7 @@ import {
 import FeedbackRowHeader from '../../components/feedback/FeedbackRowHeader';
 import { reverseOrder } from '../../../util/http';
 import uiModel from './uiModel';
+import Paging from '../../components/Paging';
 
 const Row = styled(Grid)`
   border: 1px solid black;
@@ -22,6 +23,7 @@ export class List extends Component {
     this.state = {};
     this.onDelete = this.onDelete.bind(this);
     this.onOrder = this.onOrder.bind(this);
+    this.onPagerChange = this.onPagerChange.bind(this);
   }
 
   onDelete(feedbackId) {
@@ -56,6 +58,20 @@ export class List extends Component {
     };
   }
 
+  onPagerChange(page, take) {
+    return () => {
+      let loadPage = page;
+      if (page === 'p') loadPage = this.props.page - 1;
+      if (page === 'n') loadPage = this.props.page + 1;
+      this.props.loadFeedbacksAsync(
+        loadPage,
+        take,
+        this.state.orderColumn,
+        this.props.order
+      );
+    };
+  }
+
   componentDidMount() {
     this.props.loadFeedbacksAsync();
   }
@@ -84,6 +100,12 @@ export class List extends Component {
           model={uiModel}
         />
         {feedbackRows}
+        <Paging
+          current={this.props.page}
+          take={this.props.take}
+          count={this.props.count}
+          onPagerChange={this.onPagerChange}
+        />
       </Row>
     );
   }
@@ -94,7 +116,8 @@ const mapStateToProps = state => ({
   page: state.feedback.page,
   take: state.feedback.take,
   sort: state.feedback.sort,
-  order: state.feedback.order
+  order: state.feedback.order,
+  count: state.feedback.count
 });
 
 const mapDispatchToProps = { loadFeedbacksAsync, deleteFeedbackAsync };
