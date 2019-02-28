@@ -20,7 +20,6 @@ const Row = styled(Grid)`
 export class List extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
     this.onDelete = this.onDelete.bind(this);
     this.onOrder = this.onOrder.bind(this);
     this.onPagerChange = this.onPagerChange.bind(this);
@@ -31,28 +30,30 @@ export class List extends Component {
       const loadingProps = {
         page: this.props.page,
         take: this.props.take,
-        orderColumn: this.state.orderColumn,
+        sort: this.props.sort,
         order: this.props.order
       };
+      //in case we delete the only item in page, switch to the previous page
+      if (this.props.feedbacks.length === 1 && loadingProps.page !== 1)
+        loadingProps.page--;
+
       return this.props.deleteFeedbackAsync(feedbackId, loadingProps);
     };
   }
 
-  onOrder(orderColumn) {
+  onOrder(newSortColumn) {
     return () => {
-      this.setState({ orderColumn });
-
       //change sort direction after each click on column
       const order = reverseOrder(
         this.props.order,
         this.props.sort,
-        orderColumn
+        newSortColumn
       );
 
       this.props.loadFeedbacksAsync(
         this.props.page,
         this.props.take,
-        orderColumn,
+        newSortColumn,
         order
       );
     };
@@ -66,7 +67,7 @@ export class List extends Component {
       this.props.loadFeedbacksAsync(
         loadPage,
         take,
-        this.state.orderColumn,
+        this.props.sort,
         this.props.order
       );
     };
