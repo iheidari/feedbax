@@ -36,7 +36,7 @@ const Paging = ({ current, take, count, onPagerChange }) => {
 
   pageButtons.push(
     <Button
-      key={pageCount + 1}
+      key={pageCount + 1 || 1}
       onClick={current >= pageCount ? null : onPagerChange('n')}
     >
       Next
