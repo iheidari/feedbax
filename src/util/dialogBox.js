@@ -1,5 +1,4 @@
-export const createDialogModel = (open, title, content, actions) => ({
-  open,
+export const createDialogModel = (title, content, actions) => ({
   title,
   content,
   actions

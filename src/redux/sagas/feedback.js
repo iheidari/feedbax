@@ -21,6 +21,9 @@ export function* deleteFeedbackAsync({ feedbackId, loadingProps }) {
   const feedback = yield httpClient.delete(`/feedback/${feedbackId}`);
   yield put(feedbackActionCreators.deleteFeedback(feedback));
   yield put(commonActionCreators.closeDialog());
+  yield put(
+    commonActionCreators.showSnackbar({ content: 'Deleted Successfully' })
+  );
   yield loadFeedbacksAsync(loadingProps);
 }
 

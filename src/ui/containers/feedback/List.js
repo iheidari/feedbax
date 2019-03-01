@@ -47,7 +47,6 @@ export class List extends Component {
       const onCancel = this.props.closeDialog;
 
       const dialogModel = createDialogModel(
-        true,
         'Confirmation',
         'Are you sure?',
         createOkCancelActions(onOk, onCancel)
