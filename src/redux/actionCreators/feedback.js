@@ -57,7 +57,3 @@ export const updateFeedback = savedFeedback => ({
   type: feedbackActionTypes.UPDATE_FEEDBACK,
   savedFeedback
 });
-
-export const closeSnackbar = () => ({
-  type: feedbackActionTypes.CLOSE_SNACKBAR
-});

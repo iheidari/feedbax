@@ -34,4 +34,7 @@ export function* saveFeedbackAsync({ feedback }) {
   yield feedback.id
     ? put(feedbackActionCreators.updateFeedback(savedFeedback))
     : put(feedbackActionCreators.addFeedback(savedFeedback));
+  yield put(
+    commonActionCreators.showSnackbar({ content: 'Saved Successfully' })
+  );
 }
