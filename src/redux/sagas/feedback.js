@@ -1,5 +1,6 @@
 import { put } from 'redux-saga/effects';
 import httpClient from '../../api/httpClient';
+import * as commonActionCreators from '../actionCreators/common';
 import * as feedbackActionCreators from '../actionCreators/feedback';
 import { generateQueryString } from '../../util/http';
 
@@ -19,6 +20,7 @@ export function* loadFeedbacksAsync(props) {
 export function* deleteFeedbackAsync({ feedbackId, loadingProps }) {
   const feedback = yield httpClient.delete(`/feedback/${feedbackId}`);
   yield put(feedbackActionCreators.deleteFeedback(feedback));
+  yield put(commonActionCreators.closeDialog());
   yield loadFeedbacksAsync(loadingProps);
 }
 

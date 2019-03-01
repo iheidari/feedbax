@@ -7,10 +7,15 @@ import {
   loadFeedbacksAsync,
   deleteFeedbackAsync
 } from '../../../redux/actionCreators/feedback';
+import { showDialog, closeDialog } from '../../../redux/actionCreators/common';
 import FeedbackRowHeader from '../../components/feedback/FeedbackRowHeader';
 import { reverseOrder } from '../../../util/http';
 import uiModel from './uiModel';
 import Paging from '../../components/Paging';
+import {
+  createDialogModel,
+  createOkCancelActions
+} from '../../../util/dialogBox';
 
 const Row = styled(Grid)`
   border: 1px solid black;
@@ -33,11 +38,21 @@ export class List extends Component {
         sort: this.props.sort,
         order: this.props.order
       };
-      //in case we delete the only item in page, switch to the previous page
+      //in case we delete single item in the page, switch to the previous page
       if (this.props.feedbacks.length === 1 && loadingProps.page !== 1)
         loadingProps.page--;
 
-      return this.props.deleteFeedbackAsync(feedbackId, loadingProps);
+      const onOk = () =>
+        this.props.deleteFeedbackAsync(feedbackId, loadingProps);
+      const onCancel = this.props.closeDialog;
+
+      const dialogModel = createDialogModel(
+        true,
+        'Confirmation',
+        'Are you sure?',
+        createOkCancelActions(onOk, onCancel)
+      );
+      this.props.showDialog(dialogModel);
     };
   }
 
@@ -121,7 +136,12 @@ const mapStateToProps = state => ({
   count: state.feedback.count
 });
 
-const mapDispatchToProps = { loadFeedbacksAsync, deleteFeedbackAsync };
+const mapDispatchToProps = {
+  loadFeedbacksAsync,
+  deleteFeedbackAsync,
+  showDialog,
+  closeDialog
+};
 
 export default connect(
   mapStateToProps,
