@@ -2,7 +2,7 @@ import TextField from '@material-ui/core/TextField';
 
 const uiModel = {
   list: {
-    columns: {
+    fields: {
       title: { text: 'Title', tooltip: '', size: { xs: 3 }, sortable: true },
       description: {
         text: 'Description',

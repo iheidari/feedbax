@@ -2,23 +2,23 @@ import React from 'react';
 import ListHeader from '../layout/ListHeader';
 
 const FeedbackRowHeader = props => {
-  const columns = props.model.list.columns;
-  let columnsComponents = [];
-  for (let column in columns) {
-    const col = columns[column];
-    columnsComponents.push(
+  const fields = props.model.list.fields;
+  let fieldsComponents = [];
+  for (let field in fields) {
+    const filedModel = fields[field];
+    fieldsComponents.push(
       <ListHeader
-        key={column}
-        name={column}
-        model={col}
+        key={field}
+        name={field}
+        model={filedModel}
         sort={props.sort}
         order={props.order}
-        onClick={props.onOrder(column)}
+        onClick={props.onOrder(field)}
       />
     );
   }
 
-  return columnsComponents;
+  return fieldsComponents;
 };
 
 export default FeedbackRowHeader;

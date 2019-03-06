@@ -10,16 +10,16 @@ const Column = styled(Grid)`
 `;
 
 const FeedbackRowView = props => {
-  const columns = props.model.list.columns;
+  const fields = props.model.list.fields;
   return (
     <>
-      <Column item {...columns.title.size}>
+      <Column item {...fields.title.size}>
         <FeedbackLink {...props} />
       </Column>
-      <Column item {...columns.description.size}>
+      <Column item {...fields.description.size}>
         {props.description}
       </Column>
-      <Column item {...columns.deleteAction.size} onClick={props.onDelete}>
+      <Column item {...fields.deleteAction.size} onClick={props.onDelete}>
         Delete
       </Column>
     </>
