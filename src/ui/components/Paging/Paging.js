@@ -12,7 +12,7 @@ const Paging = ({ current, take, count, onPagerChange }) => {
   let pageButtons = [];
 
   pageButtons.push(
-    <Button key={0} onClick={current <= 1 ? null : onPagerChange('p')}>
+    <Button key={0} onClick={current <= 1 ? null : onPagerChange('p', take)}>
       Previous
     </Button>
   );
@@ -23,7 +23,7 @@ const Paging = ({ current, take, count, onPagerChange }) => {
         <Button
           key={page}
           color={page === current ? 'secondary' : 'primary'}
-          onClick={page === current ? null : onPagerChange(page)}
+          onClick={page === current ? null : onPagerChange(page, take)}
         >
           {page}
         </Button>
@@ -37,7 +37,7 @@ const Paging = ({ current, take, count, onPagerChange }) => {
   pageButtons.push(
     <Button
       key={pageCount + 1 || 1}
-      onClick={current >= pageCount ? null : onPagerChange('n')}
+      onClick={current >= pageCount ? null : onPagerChange('n', take)}
     >
       Next
     </Button>

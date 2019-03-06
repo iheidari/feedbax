@@ -88,7 +88,16 @@ export class List extends Component {
   }
 
   componentDidMount() {
-    this.props.loadFeedbacksAsync();
+    console.log(this.props.page);
+    console.log(this.props.take);
+    console.log(this.props.sort);
+    console.log(this.props.order);
+    this.props.loadFeedbacksAsync(
+      this.props.page,
+      this.props.take,
+      this.props.sort,
+      this.props.order
+    );
   }
 
   render() {
