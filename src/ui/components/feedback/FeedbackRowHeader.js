@@ -1,5 +1,5 @@
 import React from 'react';
-import ListHeader from '../layout/ListHeader';
+import ListHeader from '../List/ListHeader';
 
 const FeedbackRowHeader = props => {
   const fields = props.model.list.fields;

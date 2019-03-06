@@ -9,7 +9,7 @@ import Content from '../../components/layout/Content';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import DialogBox from '../../components/DialogBox';
-import MessageSnackbar from '../../components/layout/MessageSnackbar';
+import SnackbarMessage from '../../components/SnackbarMessage';
 import { closeSnackbar } from '../../../redux/actionCreators/common';
 
 class App extends Component {
@@ -39,9 +39,9 @@ class App extends Component {
         ...snackbarProperties
       } = this.props.snackbar;
       snackbar = (
-        <MessageSnackbar {...snackbarProperties} onClose={this.onSnackbarClose}>
+        <SnackbarMessage {...snackbarProperties} onClose={this.onSnackbarClose}>
           {snackbarContent}
-        </MessageSnackbar>
+        </SnackbarMessage>
       );
     }
     return (

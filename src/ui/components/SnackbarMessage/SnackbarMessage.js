@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
 
-const MessageSnackbar = props => {
+const SnackbarMessage = props => {
   return (
     <Snackbar
       anchorOrigin={{
@@ -20,15 +20,15 @@ const MessageSnackbar = props => {
   );
 };
 
-MessageSnackbar.propTypes = {
+SnackbarMessage.propTypes = {
   open: PropTypes.bool.isRequired,
   autoHideDuration: PropTypes.number,
   onClose: PropTypes.func,
   children: PropTypes.string.isRequired
 };
 
-MessageSnackbar.defaultProps = {
+SnackbarMessage.defaultProps = {
   autoHideDuration: 5000
 };
 
-export default MessageSnackbar;
+export default SnackbarMessage;
