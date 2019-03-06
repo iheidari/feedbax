@@ -27,16 +27,6 @@ const uiModel = {
         validation: [
           { name: 'isRequired', validator: 123, messageId: 'isRequired' }
         ]
-      },
-      description: {
-        control: TextField,
-        properties: {
-          label: 'Description',
-          variant: 'outlined',
-          multiline: true
-        },
-        size: { xs: 12 },
-        validation: []
       }
     }
   }

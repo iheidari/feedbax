@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Form normal render 1`] = `
+<WithStyles(Grid)
+  container={true}
+>
+  <WithStyles(Grid)
+    item={true}
+    key="title"
+    xs={12}
+  >
+    <TextField
+      id="title"
+      label="Title"
+      margin="normal"
+      onChange={[Function]}
+      required={false}
+      select={false}
+      tooltip=""
+      value="hello"
+      variant="outlined"
+    />
+  </WithStyles(Grid)>
+</WithStyles(Grid)>
+`;

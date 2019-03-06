@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Feedback from '../../components/feedback/Feedback';
+import Form from '../../components/Form';
 import Button from '@material-ui/core/Button';
 import {
   modelChanged,
   loadFeedbackAsync,
   saveFeedbackAsync
 } from '../../../redux/actionCreators/feedback';
+import uiModel from './uiModel';
 
 export class Add extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { open: false, snackbarMessage: '' };
 
     this.modelChanged = this.modelChanged.bind(this);
     this.saveFeedback = this.saveFeedback.bind(this);
@@ -38,9 +37,10 @@ export class Add extends Component {
     if (this.props.id && !this.props.feedback.id) return null;
     return (
       <div>
-        <Feedback
-          model={this.props.feedback}
-          fieledChanged={this.modelChanged}
+        <Form
+          dataModel={this.props.feedback}
+          uiModel={uiModel.form}
+          onModelChange={this.modelChanged}
         />
         <Button variant='contained' onClick={this.saveFeedback}>
           Save
