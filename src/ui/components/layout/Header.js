@@ -1,5 +1,7 @@
-import React from "react";
+import React from 'react';
 import Styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import LanguagePanel from '../LanguagePanel/LanguagePanel';
 
 const StledBlock = Styled.div`
   height: 75px;
@@ -7,7 +9,12 @@ const StledBlock = Styled.div`
 `;
 
 const Header = () => {
-  return <StledBlock>Header</StledBlock>;
+  const { t } = useTranslation();
+  return (
+    <StledBlock>
+      {t('welcome-to-react')} <LanguagePanel />
+    </StledBlock>
+  );
 };
 
 export default Header;

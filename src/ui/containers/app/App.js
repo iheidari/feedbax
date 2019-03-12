@@ -25,6 +25,8 @@ class App extends Component {
     this.props.closeSnackbar();
   }
 
+  componentDidMount() {}
+
   render() {
     let dialog = null;
     if (this.props.dialog) {

@@ -88,10 +88,6 @@ export class List extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.page);
-    console.log(this.props.take);
-    console.log(this.props.sort);
-    console.log(this.props.order);
     this.props.loadFeedbacksAsync(
       this.props.page,
       this.props.take,
