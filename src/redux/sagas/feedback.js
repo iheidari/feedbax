@@ -22,7 +22,7 @@ export function* deleteFeedbackAsync({ feedbackId, loadingProps }) {
   yield put(feedbackActionCreators.deleteFeedback(feedback));
   yield put(commonActionCreators.closeDialog());
   yield put(
-    commonActionCreators.showSnackbar({ content: 'Deleted Successfully' })
+    commonActionCreators.showSnackbar({ text: 'Deleted Successfully' })
   );
   yield loadFeedbacksAsync(loadingProps);
 }
@@ -37,7 +37,5 @@ export function* saveFeedbackAsync({ feedback }) {
   yield feedback.id
     ? put(feedbackActionCreators.updateFeedback(savedFeedback))
     : put(feedbackActionCreators.addFeedback(savedFeedback));
-  yield put(
-    commonActionCreators.showSnackbar({ content: 'Saved Successfully' })
-  );
+  yield put(commonActionCreators.showSnackbar({ text: 'Saved Successfully' }));
 }

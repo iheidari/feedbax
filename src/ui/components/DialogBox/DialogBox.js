@@ -6,13 +6,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
+import { useTranslation } from 'react-i18next';
 
 const DialogBox = ({ title, children, actions, ...other }) => {
+  const { t } = useTranslation();
   let actionButtons = [];
   if (actions)
     actionButtons = actions.map(action => (
       <Button key={action.text} {...action}>
-        {action.text}
+        {t(action.text)}
       </Button>
     ));
   return (

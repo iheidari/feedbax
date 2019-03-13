@@ -1,8 +1,0 @@
-{
-  "en": {
-    "translation": { "welcome-to-react": "Welcome to React and react-i18next" }
-  },
-  "fr": {
-    "translation": { "welcome-to-react": "Bienvenue à React et react-i18next" }
-  }
-}

@@ -11,6 +11,7 @@ import Footer from '../../components/layout/Footer';
 import DialogBox from '../../components/DialogBox';
 import SnackbarMessage from '../../components/SnackbarMessage';
 import { closeSnackbar } from '../../../redux/actionCreators/common';
+import { withTranslation } from 'react-i18next';
 
 class App extends Component {
   constructor(props) {
@@ -38,11 +39,12 @@ class App extends Component {
     if (this.props.snackbar) {
       const {
         content: snackbarContent,
+        text: snackbarText,
         ...snackbarProperties
       } = this.props.snackbar;
       snackbar = (
         <SnackbarMessage {...snackbarProperties} onClose={this.onSnackbarClose}>
-          {snackbarContent}
+          {this.props.t(snackbarText) || snackbarContent}
         </SnackbarMessage>
       );
     }
@@ -73,4 +75,4 @@ const mapDispatchToProps = { closeSnackbar };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(withTranslation()(App));

@@ -9,6 +9,7 @@ import {
   saveFeedbackAsync
 } from '../../../redux/actionCreators/feedback';
 import uiModel from './uiModel';
+import { withTranslation } from 'react-i18next';
 
 export class Add extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ export class Add extends Component {
   }
 
   render() {
+    //const { t } = useTranslation();
     if (this.props.id && !this.props.feedback.id) return null;
     return (
       <div>
@@ -43,9 +45,9 @@ export class Add extends Component {
           onModelChange={this.modelChanged}
         />
         <Button variant='contained' onClick={this.saveFeedback}>
-          Save
+          {this.props.t('Save')}
         </Button>
-        <Link to='/feedback'>Back</Link>
+        <Link to='/feedback'>{this.props.t('Back')}</Link>
       </div>
     );
   }
@@ -65,4 +67,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Add);
+)(withTranslation()(Add));

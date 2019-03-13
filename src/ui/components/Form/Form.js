@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { getControllerByModel } from '../../../util/ui';
+import { useTranslation } from 'react-i18next';
 
 const Form = ({ dataModel, uiModel, onModelChange }) => {
+  const { t } = useTranslation();
   let formControls = [];
   for (let field in uiModel.fields) {
     const model = uiModel.fields[field];
@@ -12,7 +14,8 @@ const Form = ({ dataModel, uiModel, onModelChange }) => {
       field,
       model,
       dataValue,
-      onModelChange
+      onModelChange,
+      t
     );
     const fieldControl = (
       <Grid key={field} item {...model.size}>

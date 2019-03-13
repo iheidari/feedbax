@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-
+import { useTranslation } from 'react-i18next';
 const showButton = (current, page, pageCount) =>
   page <= 2 ||
   page >= pageCount - 1 ||
   (page >= current - 1 && page <= current + 1);
 
 const Paging = ({ current, take, count, onPagerChange }) => {
+  const { t } = useTranslation();
   const pageCount = Math.ceil(count / take);
   let pageButtons = [];
 
   pageButtons.push(
     <Button key={0} onClick={current <= 1 ? null : onPagerChange('p', take)}>
-      Previous
+      {t('Previous')}
     </Button>
   );
 
@@ -39,7 +40,7 @@ const Paging = ({ current, take, count, onPagerChange }) => {
       key={pageCount + 1 || 1}
       onClick={current >= pageCount ? null : onPagerChange('n', take)}
     >
-      Next
+      {t('Next')}
     </Button>
   );
 

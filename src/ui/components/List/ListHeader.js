@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import HeaderText from './HeaderText';
+import { useTranslation } from 'react-i18next';
 
 const StyledColumn = styled(Grid)`
   border: 1px solid black;
@@ -10,6 +11,7 @@ const StyledColumn = styled(Grid)`
 `;
 
 const ListHeader = ({ name, model, sort, order, onClick }) => {
+  const { t } = useTranslation();
   return (
     <StyledColumn
       item
@@ -21,7 +23,7 @@ const ListHeader = ({ name, model, sort, order, onClick }) => {
         sort={sort}
         order={order}
         columnName={name}
-        columnTitle={model.text}
+        columnTitle={t(model.text)}
       />
     </StyledColumn>
   );

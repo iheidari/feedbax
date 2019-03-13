@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import FeedbackLink from './FeedbackLink';
+import { useTranslation } from 'react-i18next';
 
 const Column = styled(Grid)`
   border: 1px solid black;
@@ -10,6 +11,7 @@ const Column = styled(Grid)`
 `;
 
 const FeedbackRowView = props => {
+  const { t } = useTranslation();
   const fields = props.model.list.fields;
   return (
     <>
@@ -20,7 +22,7 @@ const FeedbackRowView = props => {
         {props.description}
       </Column>
       <Column item {...fields.deleteAction.size} onClick={props.onDelete}>
-        Delete
+        {t('Delete')}
       </Column>
     </>
   );

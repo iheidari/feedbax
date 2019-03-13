@@ -1,0 +1,16 @@
+{
+  "welcome-to-react": "Bienvenue à React et react-i18next",
+  "Title": "Titre",
+  "Description": "Description",
+  "Delete": "Effacer",
+  "Previous": "Précédent",
+  "Next": "Suivant",
+  "Save": "Sauvegarder",
+  "Back": "Retour",
+  "Ok": "D'accord",
+  "Cancel": "Annuler",
+  "Confirmation": "Confirmation",
+  "Are you sure?": "Êtes-vous sûr?",
+  "Deleted Successfully": "Supprimé avec succès",
+  "Saved Successfully": "Enregistré avec succès"
+}

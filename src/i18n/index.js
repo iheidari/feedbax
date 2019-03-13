@@ -1,8 +1,12 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import resources from './common.json';
+import commonEn from './common.en.json';
+import commonFr from './common.fr.json';
 
-console.log(resources);
+const resources = {
+  en: { translation: commonEn },
+  fr: { translation: commonFr }
+};
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next

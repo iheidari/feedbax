@@ -16,6 +16,7 @@ import {
   createDialogModel,
   createOkCancelActions
 } from '../../../util/dialogBox';
+import { withTranslation } from 'react-i18next';
 
 const Row = styled(Grid)`
   border: 1px solid black;
@@ -30,7 +31,7 @@ export class List extends Component {
     this.onPagerChange = this.onPagerChange.bind(this);
   }
 
-  onDelete(feedbackId) {
+  onDelete(feedbackId, t) {
     return () => {
       const loadingProps = {
         page: this.props.page,
@@ -47,8 +48,8 @@ export class List extends Component {
       const onCancel = this.props.closeDialog;
 
       const dialogModel = createDialogModel(
-        'Confirmation',
-        'Are you sure?',
+        t('Confirmation'),
+        t('Are you sure?'),
         createOkCancelActions(onOk, onCancel)
       );
       this.props.showDialog(dialogModel);
@@ -108,7 +109,7 @@ export class List extends Component {
         {...feedback}
         key={feedback.id}
         model={uiModel}
-        onDelete={this.onDelete(feedback.id)}
+        onDelete={this.onDelete(feedback.id, this.props.t)}
       />
     ));
     return (
@@ -150,4 +151,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(List);
+)(withTranslation()(List));
