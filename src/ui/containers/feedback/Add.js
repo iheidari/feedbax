@@ -6,10 +6,12 @@ import Button from '@material-ui/core/Button';
 import {
   modelChanged,
   loadFeedbackAsync,
-  saveFeedbackAsync
+  saveFeedbackAsync,
+  updateFeedback
 } from '../../../redux/actionCreators/feedback';
 import uiModel from './uiModel';
 import { withTranslation } from 'react-i18next';
+import { validate, isValid } from '../../../util/validation';
 
 export class Add extends Component {
   constructor(props) {
@@ -21,13 +23,18 @@ export class Add extends Component {
 
   modelChanged(key) {
     return event => {
-      const newValue = { [key]: event.target.value };
+      const newValue = {
+        [key]: { ...this.props.feedback[key], value: event.target.value }
+      };
       this.props.modelChanged(this.props.feedback, newValue);
     };
   }
 
   saveFeedback() {
-    this.props.saveFeedbackAsync(this.props.feedback);
+    const validatedFeedback = validate(uiModel.form, this.props.feedback);
+    this.props.updateFeedback(validatedFeedback);
+    if (isValid(validatedFeedback))
+      this.props.saveFeedbackAsync(this.props.feedback);
   }
 
   componentDidMount() {
@@ -35,7 +42,6 @@ export class Add extends Component {
   }
 
   render() {
-    //const { t } = useTranslation();
     if (this.props.id && !this.props.feedback.id) return null;
     return (
       <div>
@@ -61,7 +67,8 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = {
   modelChanged,
   loadFeedbackAsync,
-  saveFeedbackAsync
+  saveFeedbackAsync,
+  updateFeedback
 };
 
 export default connect(

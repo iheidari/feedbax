@@ -1,4 +1,5 @@
 import TextField from '@material-ui/core/TextField';
+import { required } from '../../../util/customValidator';
 
 const uiModel = {
   list: {
@@ -18,19 +19,20 @@ const uiModel = {
       title: {
         control: TextField,
         properties: {
+          required: true,
+          error: true,
+          helperText: 'helper',
           label: 'Title',
-          tooltip: '',
           margin: 'normal',
           variant: 'outlined'
         },
         size: { xs: 12 },
-        validation: [
-          { name: 'isRequired', validator: 123, messageId: 'isRequired' }
-        ]
+        validation: [{ validator: required, messageId: 'isRequired' }]
       },
       description: {
         control: TextField,
         properties: {
+          helperText: ' ',
           label: 'Description',
           variant: 'outlined',
           multiline: true

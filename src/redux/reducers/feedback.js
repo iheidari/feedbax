@@ -31,21 +31,15 @@ const feedback = (
     case actionTypes.ADD_FEEDBACK: {
       return {
         ...state,
-        current: { title: '', description: '' },
-        saved: true,
-        saveMessage: 'Feedback added successfully'
+        current: { title: '', description: '' }
       };
     }
     case actionTypes.UPDATE_FEEDBACK: {
       return {
         ...state,
-        current: action.savedFeedback,
-        saved: true,
-        saveMessage: 'Feedback updated successfully'
+        current: action.savedFeedback
       };
     }
-    case actionTypes.CLOSE_SNACKBAR:
-      return { ...state, saved: false, saveMessage: '' };
     default:
       return state;
   }

@@ -19,7 +19,7 @@ const FeedbackRowView = props => {
         <FeedbackLink {...props} />
       </Column>
       <Column item {...fields.description.size}>
-        {props.description}
+        {props.description.value}
       </Column>
       <Column item {...fields.deleteAction.size} onClick={props.onDelete}>
         {t('Delete')}
@@ -29,8 +29,8 @@ const FeedbackRowView = props => {
 };
 
 FeedbackRowView.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string
+  title: PropTypes.object,
+  description: PropTypes.object
 };
 
 export default FeedbackRowView;

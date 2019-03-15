@@ -3,7 +3,7 @@ import React from 'react';
 export const getControllerByModel = (
   name,
   uiModel,
-  value,
+  dataModel,
   onModelChange,
   t
 ) => {
@@ -14,7 +14,7 @@ export const getControllerByModel = (
     id: name,
     label: t(label),
     ...controlProperties,
-    value: value,
+    ...dataModel,
     onChange: onModelChange(name)
   });
   return toRet;

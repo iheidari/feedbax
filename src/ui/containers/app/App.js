@@ -26,8 +26,6 @@ class App extends Component {
     this.props.closeSnackbar();
   }
 
-  componentDidMount() {}
-
   render() {
     let dialog = null;
     if (this.props.dialog) {
@@ -38,8 +36,8 @@ class App extends Component {
     let snackbar = null;
     if (this.props.snackbar) {
       const {
-        content: snackbarContent,
         text: snackbarText,
+        content: snackbarContent,
         ...snackbarProperties
       } = this.props.snackbar;
       snackbar = (

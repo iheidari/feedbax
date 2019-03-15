@@ -8,12 +8,23 @@ export const loadFeedbacksAsync = (page = 1, take = 3, sort, order) => ({
   order
 });
 
-export const loadFeedbacks = (feedbacks, count, queryStringObjects) => ({
-  type: feedbackActionTypes.LOAD_FEEDBACKS,
-  feedbacks,
-  count,
-  queryStringObjects
-});
+export const loadFeedbacks = (feedbacks, count, queryStringObjects) => {
+  let refactoredFeedbacks = feedbacks.map(feedback => {
+    let refactoredFeedback = {};
+    for (let props in feedback) {
+      refactoredFeedback[props] = { value: feedback[props] };
+    }
+    return refactoredFeedback;
+  });
+
+  console.log(refactoredFeedbacks);
+  return {
+    type: feedbackActionTypes.LOAD_FEEDBACKS,
+    feedbacks: refactoredFeedbacks,
+    count,
+    queryStringObjects
+  };
+};
 
 export const deleteFeedbackAsync = (feedbackId, loadingProps) => ({
   type: feedbackActionTypes.DELETE_FEEDBACK_ASYNC,
@@ -38,10 +49,16 @@ export const loadFeedbackAsync = feedbackId => ({
   feedbackId
 });
 
-export const loadFeedback = feedback => ({
-  type: feedbackActionTypes.LOAD_FEEDBACK,
-  feedback
-});
+export const loadFeedback = feedback => {
+  let refactoredFeedback = {};
+  for (let props in feedback) {
+    refactoredFeedback[props] = { value: feedback[props] };
+  }
+  return {
+    type: feedbackActionTypes.LOAD_FEEDBACK,
+    feedback: refactoredFeedback
+  };
+};
 
 export const saveFeedbackAsync = feedback => ({
   type: feedbackActionTypes.SAVE_FEEDBACK_ASYNC,

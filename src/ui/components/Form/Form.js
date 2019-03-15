@@ -9,11 +9,11 @@ const Form = ({ dataModel, uiModel, onModelChange }) => {
   let formControls = [];
   for (let field in uiModel.fields) {
     const model = uiModel.fields[field];
-    const dataValue = dataModel[field];
+    const data = dataModel[field];
     const fieldMainControl = getControllerByModel(
       field,
       model,
-      dataValue,
+      data,
       onModelChange,
       t
     );

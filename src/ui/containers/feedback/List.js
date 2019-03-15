@@ -104,10 +104,11 @@ export class List extends Component {
     if (this.props.feedbacks.length === 0) {
       return 'no feedback founds';
     }
+    console.log(this.props.feedbacks[0]);
     const feedbackRows = this.props.feedbacks.map(feedback => (
       <FeedbackRowView
         {...feedback}
-        key={feedback.id}
+        key={feedback.id.value}
         model={uiModel}
         onDelete={this.onDelete(feedback.id, this.props.t)}
       />
