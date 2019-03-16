@@ -31,10 +31,10 @@ export class Add extends Component {
   }
 
   saveFeedback() {
-    const validatedFeedback = validate(uiModel.form, this.props.feedback);
-    this.props.updateFeedback(validatedFeedback);
-    if (isValid(validatedFeedback))
-      this.props.saveFeedbackAsync(this.props.feedback);
+    // const validatedFeedback = validate(uiModel.form, this.props.feedback);
+    // this.props.updateFeedback(validatedFeedback);
+    // if (isValid(validatedFeedback))
+    this.props.saveFeedbackAsync(this.props.feedback);
   }
 
   componentDidMount() {

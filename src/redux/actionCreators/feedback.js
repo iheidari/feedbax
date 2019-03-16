@@ -16,8 +16,6 @@ export const loadFeedbacks = (feedbacks, count, queryStringObjects) => {
     }
     return refactoredFeedback;
   });
-
-  console.log(refactoredFeedbacks);
   return {
     type: feedbackActionTypes.LOAD_FEEDBACKS,
     feedbacks: refactoredFeedbacks,
@@ -60,17 +58,36 @@ export const loadFeedback = feedback => {
   };
 };
 
-export const saveFeedbackAsync = feedback => ({
-  type: feedbackActionTypes.SAVE_FEEDBACK_ASYNC,
-  feedback
-});
+export const saveFeedbackAsync = feedback => {
+  let refactoredFeedback = {};
+  for (let props in feedback) {
+    refactoredFeedback[props] = feedback[props].value;
+  }
+  return {
+    type: feedbackActionTypes.SAVE_FEEDBACK_ASYNC,
+    feedback: refactoredFeedback
+  };
+};
 
-export const addFeedback = savedFeedback => ({
-  type: feedbackActionTypes.ADD_FEEDBACK,
-  savedFeedback
-});
+export const addFeedback = savedFeedback => {
+  let refactoredFeedback = {};
+  for (let props in savedFeedback) {
+    refactoredFeedback[props] = { value: savedFeedback[props] };
+  }
+  return {
+    type: feedbackActionTypes.ADD_FEEDBACK,
+    savedFeedback: refactoredFeedback
+  };
+};
 
-export const updateFeedback = savedFeedback => ({
-  type: feedbackActionTypes.UPDATE_FEEDBACK,
-  savedFeedback
-});
+export const updateFeedback = savedFeedback => {
+  console.log(savedFeedback);
+  let refactoredFeedback = {};
+  for (let props in savedFeedback) {
+    refactoredFeedback[props] = { value: savedFeedback[props] };
+  }
+  return {
+    type: feedbackActionTypes.UPDATE_FEEDBACK,
+    savedFeedback: refactoredFeedback
+  };
+};

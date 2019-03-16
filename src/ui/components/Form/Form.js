@@ -10,6 +10,7 @@ const Form = ({ dataModel, uiModel, onModelChange }) => {
   for (let field in uiModel.fields) {
     const model = uiModel.fields[field];
     const data = dataModel[field];
+    console.log(data);
     const fieldMainControl = getControllerByModel(
       field,
       model,
