@@ -1,5 +1,6 @@
 import TextField from '@material-ui/core/TextField';
 import DatePicker from '../../components/DatePicker';
+import Checkbox from '@material-ui/core/Checkbox';
 import { required } from '../../../util/customValidator';
 
 const uiModel = {
@@ -68,6 +69,13 @@ const uiModel = {
         },
         size: { xs: 12 },
         validations: []
+      },
+      isPublic: {
+        control: Checkbox,
+        properties: {
+          helperText: ' ',
+          label: 'Public'
+        }
       }
     }
   }
