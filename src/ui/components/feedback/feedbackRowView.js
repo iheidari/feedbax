@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import FeedbackLink from './FeedbackLink';
-import { useTranslation } from 'react-i18next';
+import Cell from './Cell';
 
 const Column = styled(Grid)`
   border: 1px solid black;
@@ -11,26 +11,33 @@ const Column = styled(Grid)`
 `;
 
 const FeedbackRowView = props => {
-  const { t } = useTranslation();
   const fields = props.model.list.fields;
-  return (
-    <>
-      <Column item {...fields.title.size}>
-        <FeedbackLink {...props} />
+  let fieldsComponents = [];
+  console.log(props.data);
+  for (let field in fields) {
+    const uiModel = fields[field];
+    const dataModel = props.data[field];
+    fieldsComponents.push(
+      <Column
+        item
+        key={field}
+        {...uiModel.size}
+        onClick={uiModel.action && props[uiModel.action]}
+      >
+        {uiModel.linkable ? (
+          <FeedbackLink {...props.data} />
+        ) : (
+          <Cell uiModel={uiModel} dataModel={dataModel} />
+        )}
       </Column>
-      <Column item {...fields.description.size}>
-        {props.description.value}
-      </Column>
-      <Column item {...fields.deleteAction.size} onClick={props.onDelete}>
-        {t('Delete')}
-      </Column>
-    </>
-  );
+    );
+  }
+  return fieldsComponents;
 };
 
 FeedbackRowView.propTypes = {
-  title: PropTypes.object,
-  description: PropTypes.object
+  title: PropTypes.string,
+  description: PropTypes.string
 };
 
 export default FeedbackRowView;

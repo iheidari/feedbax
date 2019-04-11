@@ -34,7 +34,7 @@ export function* loadFeedbackAsync({ feedbackId }) {
 
 export function* saveFeedbackAsync({ feedback }) {
   const savedFeedback = yield httpClient.post('/feedback', feedback);
-  yield feedback.id
+  yield feedback._id
     ? put(feedbackActionCreators.updateFeedback(savedFeedback))
     : put(feedbackActionCreators.addFeedback(savedFeedback));
   yield put(commonActionCreators.showSnackbar({ text: 'Saved Successfully' }));

@@ -14,7 +14,7 @@ export const getControllerByModel = (
     id: name,
     label: t(label),
     ...controlProperties,
-    ...dataModel,
+    value: dataModel,
     onChange: onModelChange(name)
   });
   return toRet;

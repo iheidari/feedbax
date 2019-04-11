@@ -22,19 +22,21 @@ export class Add extends Component {
   }
 
   modelChanged(key) {
-    return event => {
+    return param => {
+      console.log(param.target);
       const newValue = {
-        [key]: { ...this.props.feedback[key], value: event.target.value }
+        [key]: param.target ? param.target.value : param
       };
+      console.log(newValue);
       this.props.modelChanged(this.props.feedback, newValue);
     };
   }
 
   saveFeedback() {
-    // const validatedFeedback = validate(uiModel.form, this.props.feedback);
-    // this.props.updateFeedback(validatedFeedback);
-    // if (isValid(validatedFeedback))
-    this.props.saveFeedbackAsync(this.props.feedback);
+    const validatedFeedback = validate(uiModel.form, this.props.feedback);
+    this.props.updateFeedback(validatedFeedback);
+    if (isValid(validatedFeedback))
+      this.props.saveFeedbackAsync(this.props.feedback);
   }
 
   componentDidMount() {
@@ -42,7 +44,7 @@ export class Add extends Component {
   }
 
   render() {
-    if (this.props.id && !this.props.feedback.id) return null;
+    if (this.props.id && !this.props.feedback._id) return null;
     return (
       <div>
         <Form

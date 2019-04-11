@@ -2,11 +2,9 @@ import actionTypes from '../../constants/actionTypes/feedback';
 
 const feedback = (
   state = {
-    current: { title: '', description: '' },
+    current: {},
     page: 1,
-    take: 5,
-    saved: false,
-    saveMessage: ''
+    take: 5
   },
   action
 ) => {

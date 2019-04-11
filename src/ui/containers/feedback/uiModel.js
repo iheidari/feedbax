@@ -1,17 +1,36 @@
 import TextField from '@material-ui/core/TextField';
+import DatePicker from '../../components/DatePicker';
 import { required } from '../../../util/customValidator';
 
 const uiModel = {
   list: {
     fields: {
-      title: { text: 'Title', tooltip: '', size: { xs: 3 }, sortable: true },
+      title: {
+        linkable: true,
+        text: 'Title',
+        tooltip: '',
+        size: { xs: 3 },
+        sortable: true
+      },
       description: {
         text: 'Description',
         tooltip: '',
-        size: { xs: 7 },
+        size: { xs: 6 },
         sortable: false
       },
-      deleteAction: { text: '', tooltip: '', size: { xs: 2 }, sortable: false }
+      date: {
+        text: 'Date',
+        size: { xs: 2 },
+        sortable: true,
+        format: 'date-format'
+      },
+      deleteAction: {
+        text: 'Delete',
+        tooltip: '',
+        size: { xs: 1 },
+        sortable: false,
+        action: 'onDelete'
+      }
     }
   },
   form: {
@@ -27,7 +46,7 @@ const uiModel = {
           variant: 'outlined'
         },
         size: { xs: 12 },
-        validation: [{ validator: required, messageId: 'isRequired' }]
+        validations: [{ validator: required, messageId: 'isRequired' }]
       },
       description: {
         control: TextField,
@@ -38,7 +57,17 @@ const uiModel = {
           multiline: true
         },
         size: { xs: 12 },
-        validation: []
+        validations: []
+      },
+      date: {
+        control: DatePicker,
+        properties: {
+          helperText: ' ',
+          label: 'Date',
+          variant: 'outlined'
+        },
+        size: { xs: 12 },
+        validations: []
       }
     }
   }

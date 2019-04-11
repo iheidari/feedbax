@@ -106,10 +106,10 @@ export class List extends Component {
     }
     const feedbackRows = this.props.feedbacks.map(feedback => (
       <FeedbackRowView
-        {...feedback}
-        key={feedback.id.value}
+        data={feedback}
+        key={feedback._id}
         model={uiModel}
-        onDelete={this.onDelete(feedback.id.value, this.props.t)}
+        onDelete={this.onDelete(feedback._id, this.props.t)}
       />
     ));
     return (

@@ -9,16 +9,17 @@ export const loadFeedbacksAsync = (page = 1, take = 3, sort, order) => ({
 });
 
 export const loadFeedbacks = (feedbacks, count, queryStringObjects) => {
-  let refactoredFeedbacks = feedbacks.map(feedback => {
-    let refactoredFeedback = {};
-    for (let props in feedback) {
-      refactoredFeedback[props] = { value: feedback[props] };
-    }
-    return refactoredFeedback;
-  });
+  // let refactoredFeedbacks = feedbacks.map(feedback => {
+  //   let refactoredFeedback = {};
+  //   for (let props in feedback) {
+  //     refactoredFeedback[props] = { value: feedback[props] };
+  //   }
+  //   return refactoredFeedback;
+  // });
   return {
     type: feedbackActionTypes.LOAD_FEEDBACKS,
-    feedbacks: refactoredFeedbacks,
+    // feedbacks: refactoredFeedbacks,
+    feedbacks,
     count,
     queryStringObjects
   };
@@ -48,46 +49,29 @@ export const loadFeedbackAsync = feedbackId => ({
 });
 
 export const loadFeedback = feedback => {
-  let refactoredFeedback = {};
-  for (let props in feedback) {
-    refactoredFeedback[props] = { value: feedback[props] };
-  }
   return {
     type: feedbackActionTypes.LOAD_FEEDBACK,
-    feedback: refactoredFeedback
+    feedback
   };
 };
 
 export const saveFeedbackAsync = feedback => {
-  let refactoredFeedback = {};
-  for (let props in feedback) {
-    refactoredFeedback[props] = feedback[props].value;
-  }
   return {
     type: feedbackActionTypes.SAVE_FEEDBACK_ASYNC,
-    feedback: refactoredFeedback
+    feedback
   };
 };
 
 export const addFeedback = savedFeedback => {
-  let refactoredFeedback = {};
-  for (let props in savedFeedback) {
-    refactoredFeedback[props] = { value: savedFeedback[props] };
-  }
   return {
     type: feedbackActionTypes.ADD_FEEDBACK,
-    savedFeedback: refactoredFeedback
+    savedFeedback
   };
 };
 
 export const updateFeedback = savedFeedback => {
-  console.log(savedFeedback);
-  let refactoredFeedback = {};
-  for (let props in savedFeedback) {
-    refactoredFeedback[props] = { value: savedFeedback[props] };
-  }
   return {
     type: feedbackActionTypes.UPDATE_FEEDBACK,
-    savedFeedback: refactoredFeedback
+    savedFeedback
   };
 };

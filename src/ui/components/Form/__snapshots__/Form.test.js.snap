@@ -10,11 +10,6 @@ exports[`components/Form normal render 1`] = `
     xs={12}
   >
     <TextField
-      0="h"
-      1="e"
-      2="l"
-      3="l"
-      4="o"
       id="title"
       label="Title"
       margin="normal"
@@ -22,6 +17,7 @@ exports[`components/Form normal render 1`] = `
       required={false}
       select={false}
       tooltip=""
+      value="hello"
       variant="outlined"
     />
   </WithStyles(Grid)>
