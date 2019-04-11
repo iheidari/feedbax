@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Form from '../../components/Form';
+import Form from '../../components/Feedback/Form';
 import Button from '@material-ui/core/Button';
 import {
   modelChanged,
@@ -23,11 +23,9 @@ export class Add extends Component {
 
   modelChanged(key) {
     return param => {
-      console.log(param.target);
       const newValue = {
         [key]: param.target ? param.target.value : param
       };
-      console.log(newValue);
       this.props.modelChanged(this.props.feedback, newValue);
     };
   }
@@ -48,7 +46,7 @@ export class Add extends Component {
     return (
       <div>
         <Form
-          dataModel={this.props.feedback}
+          data={this.props.feedback}
           uiModel={uiModel.form}
           onModelChange={this.modelChanged}
         />

@@ -13,7 +13,6 @@ const Column = styled(Grid)`
 const FeedbackRowView = props => {
   const fields = props.model.list.fields;
   let fieldsComponents = [];
-  console.log(props.data);
   for (let field in fields) {
     const uiModel = fields[field];
     const dataModel = props.data[field];
