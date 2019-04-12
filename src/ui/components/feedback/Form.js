@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import DatePicker from '../DatePicker/DatePicker';
+import TextField from '../basic/TextField';
+import DatePicker from '../basic/DatePicker';
+import Checkbox from '../basic/Checkbox';
 
 const Form = ({ data, onModelChange }) => {
   return (
@@ -33,6 +34,13 @@ const Form = ({ data, onModelChange }) => {
           variant='outlined'
           value={data.date}
           onChange={onModelChange('date')}
+        />
+      </Grid>
+      <Grid item sx={12}>
+        <Checkbox
+          label='General'
+          value={data.isPublic}
+          onChange={onModelChange('isPublic')}
         />
       </Grid>
     </Grid>
