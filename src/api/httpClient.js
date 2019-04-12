@@ -3,7 +3,7 @@ import axios from 'axios';
 const httpClient = axios.create();
 
 httpClient.defaults.baseURL = 'http://localhost:4000';
-httpClient.defaults.timeout = 5000;
+httpClient.defaults.timeout = 30000;
 
 //default interceptors for requests and responses
 httpClient.interceptors.request.use(
