@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import TextField from '../basic/TextField';
 import DatePicker from '../basic/DatePicker';
-import Checkbox from '../basic/Checkbox';
+import Switch from '../basic/Switch';
 
 const Form = ({ data, onModelChange }) => {
   return (
@@ -37,7 +37,7 @@ const Form = ({ data, onModelChange }) => {
         />
       </Grid>
       <Grid item sx={12}>
-        <Checkbox
+        <Switch
           label='General'
           value={data.isPublic}
           onChange={onModelChange('isPublic')}
