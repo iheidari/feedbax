@@ -5,6 +5,7 @@ import TextField from '../basic/TextField';
 import DatePicker from '../basic/DatePicker';
 import Switch from '../basic/Switch';
 import Combobox from '../basic/Combobox';
+import List from '../basic/List';
 
 const Form = ({ data, onModelChange }) => {
   return (
@@ -52,6 +53,9 @@ const Form = ({ data, onModelChange }) => {
           items={[{ key: 1, value: 'one' }, { key: 2, value: 'two' }]}
           onChange={onModelChange('category')}
         />
+      </Grid>
+      <Grid item xs={12}>
+        <List items={[{ key: 1, text: 'one' }, { key: 2, text: 'two' }]} />
       </Grid>
     </Grid>
   );
