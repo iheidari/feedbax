@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '../basic/TextField';
 import DatePicker from '../basic/DatePicker';
 import Switch from '../basic/Switch';
+import Combobox from '../basic/Combobox';
 
 const Form = ({ data, onModelChange }) => {
   return (
@@ -36,11 +37,20 @@ const Form = ({ data, onModelChange }) => {
           onChange={onModelChange('date')}
         />
       </Grid>
-      <Grid item sx={12}>
+      <Grid item xs={12}>
         <Switch
           label='General'
           value={data.isPublic}
           onChange={onModelChange('isPublic')}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <Combobox
+          label='Category'
+          value={data.category}
+          hasNone
+          items={[{ key: 1, value: 'one' }, { key: 2, value: 'two' }]}
+          onChange={onModelChange('category')}
         />
       </Grid>
     </Grid>
