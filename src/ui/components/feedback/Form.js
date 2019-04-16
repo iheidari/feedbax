@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
+import { useTranslation } from 'react-i18next';
 import TextField from '../basic/TextField';
 import DatePicker from '../basic/DatePicker';
 import Switch from '../basic/Switch';
@@ -8,11 +9,12 @@ import Combobox from '../basic/Combobox';
 import List from '../basic/List';
 
 const Form = ({ data, onModelChange }) => {
+  const { t } = useTranslation();
   return (
     <Grid container>
       <Grid item xs={12}>
         <TextField
-          label='Title'
+          label={t('Title')}
           margin='normal'
           variant='outlined'
           value={data.title}
@@ -21,7 +23,7 @@ const Form = ({ data, onModelChange }) => {
       </Grid>
       <Grid item xs={12}>
         <TextField
-          label='Description'
+          label={t('Description')}
           margin='normal'
           variant='outlined'
           value={data.description}
@@ -31,7 +33,7 @@ const Form = ({ data, onModelChange }) => {
       </Grid>
       <Grid item xs={12}>
         <DatePicker
-          label='Date'
+          label={t('Date')}
           margin='normal'
           variant='outlined'
           value={data.date}
@@ -40,7 +42,7 @@ const Form = ({ data, onModelChange }) => {
       </Grid>
       <Grid item xs={12}>
         <Switch
-          label='General'
+          label={t('General')}
           value={data.isPublic}
           onChange={onModelChange('isPublic')}
         />
