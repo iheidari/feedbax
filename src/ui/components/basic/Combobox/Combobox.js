@@ -5,36 +5,48 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 const Combobox = props => {
-  const { value, onChange, label, items, hasNone, ...remaining } = props;
+  const {
+    id,
+    name,
+    value,
+    onChange,
+    label,
+    items,
+    hasNone,
+    ...remaining
+  } = props;
   let itemsComponent = [];
   if (hasNone)
     itemsComponent.push(
-      <MenuItem key={0} value=''>
+      <MenuItem key={0} value='_'>
         <em>None</em>
       </MenuItem>
     );
   itemsComponent.push(
     items.map(item => (
       <MenuItem key={item.key} value={item.key}>
-        {item.value}
+        {item.text}
       </MenuItem>
     ))
   );
-
+  const selectComponent = (
+    <Select
+      value={value || '_'}
+      onChange={onChange}
+      displayEmpty={hasNone}
+      inputProps={{
+        name: name || id,
+        id: id
+      }}
+      {...remaining}
+    >
+      {itemsComponent}
+    </Select>
+  );
   return (
     <FormControl>
-      <InputLabel htmlFor='age-simple'>{label}</InputLabel>
-      <Select
-        value={value || ''}
-        onChange={onChange}
-        inputProps={{
-          name: 'age',
-          id: 'age-simple'
-        }}
-        {...remaining}
-      >
-        {itemsComponent}
-      </Select>
+      <InputLabel htmlFor={id}>{label}</InputLabel>
+      {selectComponent}
     </FormControl>
   );
 };

@@ -47,10 +47,11 @@ const Form = ({ data, onModelChange }) => {
       </Grid>
       <Grid item xs={12}>
         <Combobox
+          id='category'
           label='Category'
           value={data.category}
           hasNone
-          items={[{ key: 1, value: 'one' }, { key: 2, value: 'two' }]}
+          items={[{ key: 1, text: 'one' }, { key: 2, text: 'two' }]}
           onChange={onModelChange('category')}
         />
       </Grid>
