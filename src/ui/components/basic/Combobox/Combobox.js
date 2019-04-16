@@ -3,6 +3,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import { useTranslation } from 'react-i18next';
 
 const Combobox = props => {
   const {
@@ -15,11 +16,14 @@ const Combobox = props => {
     hasNone,
     ...remaining
   } = props;
+
+  const { t } = useTranslation();
+
   let itemsComponent = [];
   if (hasNone)
     itemsComponent.push(
       <MenuItem key={0} value='_'>
-        <em>None</em>
+        <em>{t('None')}</em>
       </MenuItem>
     );
   itemsComponent.push(
