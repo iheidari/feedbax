@@ -60,6 +60,27 @@ const Form = ({ data, onModelChange }) => {
       <Grid item xs={12}>
         <List items={[{ key: 1, text: 'one' }, { key: 2, text: 'two' }]} />
       </Grid>
+      <Grid item xs={12}>
+        <List
+          isComplex
+          items={[
+            {
+              key: 1,
+              text: 'Primary',
+              items: [{ key: 1, text: 'One' }, { key: 2, text: 'Two' }]
+            },
+            {
+              key: 2,
+              text: 'Secondary',
+              items: [
+                { key: 3, text: 'Three' },
+                { key: 4, text: 'Four' },
+                { key: 5, text: 'Five' }
+              ]
+            }
+          ]}
+        />
+      </Grid>
     </Grid>
   );
 };
