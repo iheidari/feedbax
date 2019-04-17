@@ -1,5 +1,5 @@
 import TextField from '@material-ui/core/TextField';
-import DatePicker from '../../components/DatePicker';
+import DatePicker from '../../components/basic/DatePicker';
 import Checkbox from '@material-ui/core/Checkbox';
 import { required } from '../../../util/customValidator';
 

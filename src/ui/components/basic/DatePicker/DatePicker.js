@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import format from '../../../util/format';
+import format from '../../../../util/format';
 
 const DatePicker = props => {
   let { value } = props;
