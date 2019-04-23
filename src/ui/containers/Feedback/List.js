@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import FeedbackRowView from '../../components/feedback/FeedbackRowView';
+import FeedbackRowView from '../../components/Feedback/FeedbackRowView';
 import {
   loadFeedbacksAsync,
   deleteFeedbackAsync
 } from '../../../redux/actionCreators/feedback';
 import { showDialog, closeDialog } from '../../../redux/actionCreators/common';
-import FeedbackRowHeader from '../../components/feedback/FeedbackRowHeader';
+import FeedbackRowHeader from '../../components/Feedback/FeedbackRowHeader';
 import { reverseOrder } from '../../../util/http';
 import uiModel from './uiModel';
 import Paging from '../../components/Paging';

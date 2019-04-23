@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Form from '../../components/feedback/Form';
+import Form from '../../components/Feedback/Form';
 import Button from '@material-ui/core/Button';
 import {
   modelChanged,
