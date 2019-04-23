@@ -3,7 +3,7 @@ import Form from './Form';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import uiModel from './Form.test.mock';
-import i18n from '../../../i18n';
+import '../../../i18n';
 
 Enzyme.configure({ adapter: new Adapter() });
 
