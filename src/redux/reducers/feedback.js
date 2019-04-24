@@ -29,7 +29,7 @@ const feedback = (
     case actionTypes.ADD_FEEDBACK: {
       return {
         ...state,
-        current: { title: '', description: '' }
+        current: {}
       };
     }
     case actionTypes.UPDATE_FEEDBACK: {

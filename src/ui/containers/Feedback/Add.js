@@ -11,7 +11,7 @@ import {
 } from '../../../redux/actionCreators/feedback';
 import uiModel from './uiModel';
 import { withTranslation } from 'react-i18next';
-import { validate, isValid } from '../../../util/validation';
+import { validate, validateField, isValid } from '../../../util/validation';
 
 export class Add extends Component {
   constructor(props) {
@@ -23,18 +23,22 @@ export class Add extends Component {
 
   modelChanged(key) {
     return param => {
+      const value = param.target ? param.target.value : param;
       const newValue = {
-        [key]: param.target ? param.target.value : param
+        [key]: value
       };
       this.props.modelChanged(this.props.feedback, newValue);
+      const fieldValidation = validateField(uiModel.validations[key], value);
+      const validationResult = { [key]: fieldValidation };
+      this.props.updateFeedback({ validation: validationResult });
     };
   }
 
   saveFeedback() {
-    const validatedFeedback = validate(uiModel.form, this.props.feedback);
-    this.props.updateFeedback(validatedFeedback);
-    if (isValid(validatedFeedback))
+    const validationResult = validate(uiModel.validations, this.props.feedback);
+    if (isValid(validationResult))
       this.props.saveFeedbackAsync(this.props.feedback);
+    else this.props.updateFeedback({ validation: validationResult });
   }
 
   componentDidMount() {
@@ -47,7 +51,7 @@ export class Add extends Component {
       <div>
         <Form
           data={this.props.feedback}
-          uiModel={uiModel.form}
+          validation={this.props.validation}
           onModelChange={this.modelChanged}
         />
         <Button variant='contained' onClick={this.saveFeedback}>
@@ -61,7 +65,8 @@ export class Add extends Component {
 
 const mapStateToProps = (state, props) => ({
   id: props.match.params.id,
-  feedback: state.feedback.current
+  feedback: state.feedback.current,
+  validation: state.feedback.current.validation || {}
 });
 
 const mapDispatchToProps = {
