@@ -78,6 +78,10 @@ const uiModel = {
         }
       }
     }
+  },
+  validations: {
+    title: [{ validator: required, messageId: 'isRequired' }],
+    description: []
   }
 };
 
