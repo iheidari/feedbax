@@ -8,7 +8,7 @@ import Switch from '../basic/Switch';
 import Combobox from '../basic/Combobox';
 import List from '../basic/List';
 
-const Form = ({ data, validation, onModelChange }) => {
+const Form = ({ data, onModelChange }) => {
   const { t } = useTranslation();
   return (
     <Grid container>
@@ -17,7 +17,6 @@ const Form = ({ data, validation, onModelChange }) => {
           label={t('Title')}
           margin='normal'
           variant='outlined'
-          validation={validation.title}
           value={data.title}
           onChange={onModelChange('title')}
         />
@@ -87,8 +86,7 @@ const Form = ({ data, validation, onModelChange }) => {
 };
 
 Form.propTypes = {
-  data: PropTypes.object.isRequired,
-  validation: PropTypes.object.isRequired,
+  data: PropTypes.object,
   onModelChange: PropTypes.func
 };
 
