@@ -17,6 +17,8 @@ export class Add extends Component {
   constructor(props) {
     super(props);
 
+    this.state = { activeField: '' };
+
     this.modelChanged = this.modelChanged.bind(this);
     this.saveFeedback = this.saveFeedback.bind(this);
   }
@@ -28,9 +30,12 @@ export class Add extends Component {
         [key]: value
       };
       this.props.modelChanged(this.props.feedback, newValue);
-      const fieldValidation = validateField(uiModel.validations[key], value);
-      const validationResult = { [key]: fieldValidation };
-      this.props.updateFeedback({ validation: validationResult });
+      const validation = uiModel.validations[key];
+      if (validation) {
+        const fieldValidation = validateField(validation, value);
+        const validationResult = { [key]: fieldValidation };
+        this.props.updateFeedback({ validation: validationResult });
+      }
     };
   }
 
@@ -39,6 +44,17 @@ export class Add extends Component {
     if (isValid(validationResult))
       this.props.saveFeedbackAsync(this.props.feedback);
     else this.props.updateFeedback({ validation: validationResult });
+    if (validationResult) {
+      for (let field in validationResult) {
+        //TODO: Since the validationResult is an object and not an array,
+        //it is possible that it change the focus to a wrong component
+        const result = validationResult[field];
+        if (result && result.length > 0) {
+          this.setState({ activeField: field });
+          break;
+        }
+      }
+    }
   }
 
   componentDidMount() {
@@ -53,6 +69,7 @@ export class Add extends Component {
           data={this.props.feedback}
           validation={this.props.validation}
           onModelChange={this.modelChanged}
+          activeField={this.state.activeField}
         />
         <Button variant='contained' onClick={this.saveFeedback}>
           {this.props.t('Save')}

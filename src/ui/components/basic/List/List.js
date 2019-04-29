@@ -11,7 +11,7 @@ const CustomizedList = ({ items, isComplex, ...props }) => {
     itemsComponents = items.map(section => (
       <li key={`section-${section.key}`}>
         <ul>
-          <ListSubheader button>{section.text}</ListSubheader>
+          <ListSubheader>{section.text}</ListSubheader>
           {section.items.map(item => (
             <ListItem key={`item-${section.key}-${item.key}`} button>
               <ListItemText primary={item.text} />

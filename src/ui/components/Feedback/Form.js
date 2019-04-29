@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { useTranslation } from 'react-i18next';
@@ -8,12 +8,23 @@ import Switch from '../basic/Switch';
 import Combobox from '../basic/Combobox';
 import List from '../basic/List';
 
-const Form = ({ data, validation, onModelChange }) => {
+const Form = ({ data, validation, activeField, onModelChange }) => {
   const { t } = useTranslation();
+  let title = useRef();
+  let isPublic = useRef();
+  useEffect(() => {
+    if (activeField === 'title') {
+      return title.current.focus();
+    }
+    if (activeField === 'isPublic') {
+      return isPublic.current.focus();
+    }
+  }, [activeField]);
   return (
     <Grid container>
       <Grid item xs={12}>
         <TextField
+          inputRef={title}
           label={t('Title')}
           margin='normal'
           variant='outlined'
@@ -43,6 +54,7 @@ const Form = ({ data, validation, onModelChange }) => {
       </Grid>
       <Grid item xs={12}>
         <Switch
+          inputRef={isPublic}
           label={t('General')}
           value={data.isPublic}
           onChange={onModelChange('isPublic')}
