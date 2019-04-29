@@ -24,6 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "coverage": "react-scripts test --env=jsdom --coverage",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
@@ -38,15 +40,16 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.8.0",
-    "enzyme-to-json": "^3.3.5",
-    "@storybook/react": "^4.1.13",
+    "@babel/core": "^7.3.3",
     "@storybook/addon-actions": "^4.1.13",
     "@storybook/addon-links": "^4.1.13",
     "@storybook/addons": "^4.1.13",
-    "@babel/core": "^7.3.3",
-    "babel-loader": "^8.0.5"
+    "@storybook/react": "^4.1.13",
+    "babel-loader": "^8.0.5",
+    "coveralls": "^3.0.3",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.8.0",
+    "enzyme-to-json": "^3.3.5"
   },
   "jest": {
     "snapshotSerializers": [
