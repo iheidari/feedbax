@@ -6,4 +6,21 @@
 
 An application for gathering, managing feedbacks
 
+### Technologies:
+
+- Create-React-App
+- Material UI
+- Styled Components
+- Redux
+- Saga
+- React-i18Next
+- Axios
+- Jest
+- Enzyme
+- Travic-CI
+- CircleCI
+- Coveralls
+- Validator
+- Date-fns
+
 _This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)._
