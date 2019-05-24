@@ -56,7 +56,6 @@ export const loadFeedback = feedback => {
 };
 
 export const saveFeedbackAsync = feedback => {
-  console.log(feedback);
   return {
     type: feedbackActionTypes.SAVE_FEEDBACK_ASYNC,
     feedback

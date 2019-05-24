@@ -1,84 +1,84 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Form from '../../components/Feedback/Form';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import uiModel from './uiModel';
+import { validate, validateField, isValid } from '../../../util/validation';
 import {
   modelChanged,
   loadFeedbackAsync,
   saveFeedbackAsync,
   updateFeedback
 } from '../../../redux/actionCreators/feedback';
-import uiModel from './uiModel';
-import { withTranslation } from 'react-i18next';
-import { validate, validateField, isValid } from '../../../util/validation';
 
-export class Add extends Component {
-  constructor(props) {
-    super(props);
+const Add = props => {
+  const { t } = useTranslation();
 
-    this.state = { activeField: '' };
-
-    this.modelChanged = this.modelChanged.bind(this);
-    this.saveFeedback = this.saveFeedback.bind(this);
-  }
-
-  modelChanged(key) {
+  const modelChanged = key => {
     return param => {
       const value = param.target ? param.target.value : param;
       const newValue = {
         [key]: value
       };
-      this.props.modelChanged(this.props.feedback, newValue);
+      props.modelChanged(props.feedback, newValue);
       const validation = uiModel.validations[key];
       if (validation) {
         const fieldValidation = validateField(validation, value);
         const validationResult = { [key]: fieldValidation };
-        this.props.updateFeedback({ validation: validationResult });
+        props.updateFeedback({ validation: validationResult });
       }
     };
-  }
+  };
 
-  saveFeedback() {
-    const validationResult = validate(uiModel.validations, this.props.feedback);
-    if (isValid(validationResult))
-      this.props.saveFeedbackAsync(this.props.feedback);
-    else this.props.updateFeedback({ validation: validationResult });
+  const saveFeedback = () => {
+    const validationResult = validate(uiModel.validations, props.feedback);
+    if (isValid(validationResult)) props.saveFeedbackAsync(props.feedback);
+    else props.updateFeedback({ validation: validationResult });
     if (validationResult) {
       for (let field in validationResult) {
         //TODO: Since the validationResult is an object and not an array,
         //it is possible that it change the focus to a wrong component
         const result = validationResult[field];
         if (result && result.length > 0) {
-          this.setState({ activeField: field });
+          setActiveField(field);
           break;
         }
       }
     }
-  }
+  };
 
-  componentDidMount() {
-    if (this.props.id) this.props.loadFeedbackAsync(this.props.id);
-  }
+  const [activeField, setActiveField] = useState('');
 
-  render() {
-    if (this.props.id && !this.props.feedback._id) return null;
-    return (
-      <div>
-        <Form
-          data={this.props.feedback}
-          validation={this.props.validation}
-          onModelChange={this.modelChanged}
-          activeField={this.state.activeField}
-        />
-        <Button variant='contained' onClick={this.saveFeedback}>
-          {this.props.t('Save')}
-        </Button>
-        <Link to='/feedback'>{this.props.t('Back')}</Link>
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    return () => {
+      if (props.id) props.loadFeedbackAsync(props.id);
+    };
+  }, [props.id]);
+
+  return (
+    <div>
+      <Form
+        data={props.feedback}
+        validation={props.validation}
+        onModelChange={modelChanged}
+        activeField={activeField}
+      />
+      <Button variant='contained' onClick={saveFeedback}>
+        {t('Save')}
+      </Button>
+      <Link to='/feedback'>{t('Back')}</Link>
+    </div>
+  );
+};
+
+Add.propTypes = {
+  id: PropTypes.string,
+  feedback: PropTypes.object,
+  validation: PropTypes.object
+};
 
 const mapStateToProps = (state, props) => ({
   id: props.match.params.id,
@@ -96,4 +96,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withTranslation()(Add));
+)(Add);
